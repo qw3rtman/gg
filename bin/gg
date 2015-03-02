@@ -2,3 +2,5 @@
 'use strict';
 
 process.bin = process.title = 'gg';
+
+var cli = require('cli');

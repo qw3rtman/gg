@@ -2,12 +2,13 @@
   "name": "gg",
   "version": "0.0.1",
   "description": "your git goodies cookbook",
-  "main": "index.js",
+  "keywords": ["git", "goodies", "gg", "cookbook", "shortcuts"],
   "author": {
     "name": "Nimit Kalra",
     "email": "nimit@nimitkalra.com",
     "url": "http://nimitkalra.com"
   },
+  "main": "index.js",
   "license": "MIT",
   "repository": {
     "type": "git",
