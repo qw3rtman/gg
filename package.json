@@ -2,7 +2,13 @@
   "name": "gg",
   "version": "0.0.1",
   "description": "your git goodies cookbook",
-  "keywords": ["git", "goodies", "gg", "cookbook", "shortcuts"],
+  "keywords": [
+    "git",
+    "goodies",
+    "gg",
+    "cookbook",
+    "shortcuts"
+  ],
   "author": {
     "name": "Nimit Kalra",
     "email": "nimit@nimitkalra.com",
@@ -26,6 +32,7 @@
   },
   "preferGlobal": true,
   "dependencies": {
-    "cli": "^0.6.5"
+    "cli": "^0.6.5",
+    "nodegit": "^0.2.7"
   }
 }
