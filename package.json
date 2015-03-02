@@ -1,0 +1,27 @@
+{
+	"name": "gg",
+  "version": "0.0.1",
+	"description": "your git goodies cookbook",
+  "main": "index.js",
+	"author": {
+		"name": "Nimit Kalra",
+		"email": "nimit@nimitkalra.com",
+		"url": "http://nimitkalra.com"
+	},
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/qw3rtman/gg.git"
+  },
+  "bugs": {
+    "url": "https://github.com/qw3rtman/gg/issues"
+  },
+  "homepage": "https://github.com/qw3rtman/gg",
+	"engines": {
+		"node": ">=0.10.0"
+	},
+	"bin": {
+		"gg": "bin/gg"
+	},
+	"preferGlobal": true,
+}
