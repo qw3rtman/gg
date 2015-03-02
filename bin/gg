@@ -3,4 +3,33 @@
 
 process.bin = process.title = 'gg';
 
+var gg = require('../lib/gg.js');
 var cli = require('cli');
+var git = require('nodegit');
+
+cli.parse(null, ['aa', 'c', 'cl', 'remove', 'uninstall', 'ls']);
+
+switch (cli.command) {
+	// Add all
+	case 'aa':
+		gg.addAll();
+		break;
+
+	// Commit.
+	case 'c':
+		var message = cli.args.join(' ');
+		gg.commit(message);
+		break;
+}
+
+// gg.getCurrentRepo().then(function(repo) {
+//   return repo.getMasterCommit();
+// }).then(function(firstCommitOnMaster) {
+//   var history = firstCommitOnMaster.history();
+//
+//   history.on("commit", function(commit) {
+//     console.log(commit.message());
+//   });
+//
+//   history.start();
+// });
