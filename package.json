@@ -14,7 +14,7 @@
     "email": "nimit@nimitkalra.com",
     "url": "http://nimitkalra.com"
   },
-  "main": "index.js",
+  "main": "lib/gg.js",
   "license": "MIT",
   "repository": {
     "type": "git",
