@@ -54,7 +54,7 @@ You can also get up and running without npm, but it is not recommended to do so.
 
 `gg` relies on Node.js and `git`.
 
-Don't foget to `alias gg='noglob gg'` if you're using [prezto](https://github.com/sorin-ionescu/prezto), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), or something similar.
+Don't foget to `alias gg='noglob gg'` (alias `gg` to `noglob gg`) if you're using [prezto](https://github.com/sorin-ionescu/prezto), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), or something similar.
 
 ## Usage
 ### Initializing repositories
