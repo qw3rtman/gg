@@ -1,2 +1,2 @@
 # gg
-**the** git goodies cookbook
+**your** git goodies cookbook
