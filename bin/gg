@@ -41,6 +41,12 @@ switch (cli.command) {
 		gg.pull();
 		break;
 
+	// Fetch.
+	case 'f':
+	case 'fetcj':
+		gg.fetch();
+		break;
+
 	// Status.
 	case 's':
 	case 'status':
