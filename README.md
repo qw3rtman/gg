@@ -54,6 +54,8 @@ You can also get up and running without npm, but it is not recommended to do so.
 
 `gg` relies on Node.js and `git`.
 
+Don't foget to `alias gg='noglob gg'` if you're using [prezto](https://github.com/sorin-ionescu/prezto), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), or something similar.
+
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
