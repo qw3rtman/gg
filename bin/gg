@@ -15,9 +15,9 @@ switch (cli.command) {
 		gg.init();
 		break;
 
-	// Add all.
+	// Add.
 	case 'a':
-	case 'aa':
+	case 'aa': // Short for 'add all'.
 	case 'add':
 		gg.addAll();
 		break;
