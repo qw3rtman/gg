@@ -85,3 +85,17 @@ You can also get up and running without npm, but it is not recommended to do so.
 ![log](screenshots/log.png)
 * `$ gg l`
 * `$ gg log`
+
+## Contributing
+Contributions are always welcome.
+
+We follow [Airbnb's coding standard](https://github.com/airbnb/javascript), so make sure you use that as a guideline.
+
+Fork our code, make a new branch, and send a pull request.
+
+TODO:
+* support for branches
+* handling for non-fast-forwards (when you need to pull first, merge, and then push)
+* handling for merge conflicts
+* handling for freshly initialized git repositories status
+* support for specifying path of repository initialization and cloning
