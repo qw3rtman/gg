@@ -1,4 +1,10 @@
-# gg
-**the** git goodies cookbook
+gg
+==
 
-Make your life easier.
+the cookbook of git goodies
+
+```sh
+  $ gg c Added introduction usage to  README.
+
+	
+```
