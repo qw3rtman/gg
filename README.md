@@ -115,3 +115,4 @@ TODO:
 * handling for merge conflicts
 * handling for freshly initialized git repositories status
 * support for specifying path of repository initialization and cloning
+* unit tests
