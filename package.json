@@ -33,7 +33,6 @@
   "preferGlobal": true,
   "dependencies": {
     "chalk": "^1.0.0",
-    "cli": "^0.6.5",
-    "nodegit": "^0.2.7"
+    "cli": "^0.6.5"
   }
 }
