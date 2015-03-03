@@ -31,10 +31,10 @@ Looking good!
 `gg` can be installed via the Node Package Manager (`npm`).
 
 ```sh
-	$ npm install -g git-goodies
+	$ npm install -g gitgoodies
 ```
 
-If that doesn't work, try running it as root. `$ sudo npm install -g git-goodies`
+If that doesn't work, try running it as root. `$ sudo npm install -g gitgoodies`
 
 You can also get up and running without npm, but it is not recommended to do so.
 
