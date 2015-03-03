@@ -6,7 +6,6 @@ the cookbook of git goodies
 ![status](http://qw3rtman.github.io/gg/screenshots/status.png)
 ![log](http://qw3rtman.github.io/gg/screenshots/log.png)
 
-
 `gg` helps you *work with `git` more efficiently*, saving you keystrokes for your most prized projects.
 
 Think of `gg` as a wrapper for the `git` commands that you run all the time.
