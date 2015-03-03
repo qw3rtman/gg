@@ -30,15 +30,3 @@ switch (cli.command) {
 		gg.push();
 		break;
 }
-
-// gg.getCurrentRepo().then(function(repo) {
-//   return repo.getMasterCommit();
-// }).then(function(firstCommitOnMaster) {
-//   var history = firstCommitOnMaster.history();
-//
-//   history.on("commit", function(commit) {
-//     console.log(commit.message());
-//   });
-//
-//   history.start();
-// });
