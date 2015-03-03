@@ -7,9 +7,13 @@ var gg = require('../lib/gg.js');
 var cli = require('cli');
 var git = require('nodegit');
 
-cli.parse(null, ['aa', 'c', 'cl', 'remove', 'uninstall', 'ls']);
+cli.parse(null, ['i', 'aa', 'c', 'p', 'remove', 'uninstall', 'ls']);
 
 switch (cli.command) {
+	case 'i':
+		gg.init();
+		break;
+
 	// Add all
 	case 'aa':
 		gg.addAll();
@@ -19,6 +23,11 @@ switch (cli.command) {
 	case 'c':
 		var message = cli.args.join(' ');
 		gg.commit(message);
+		break;
+
+	// Push
+	case 'p':
+		gg.push();
 		break;
 }
 
