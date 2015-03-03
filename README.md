@@ -42,13 +42,13 @@ You can also get up and running without npm, but it is not recommended to do so.
 ```sh
 	# Clone the repository.
 	$ git clone https://github.com/qw3rtman/gg.git
-	
+
 	# Switch into the repository's directory.
 	$ cd gg
-	
+
 	# Install!
 	$ npm install -g
-	
+
 	# Install as root, if the above command does not work.
 	$ sudo npm install -g
 ```
