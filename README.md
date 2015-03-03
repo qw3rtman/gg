@@ -1,4 +1,4 @@
-gg
+`gg`
 ==
 
 the cookbook of git goodies
