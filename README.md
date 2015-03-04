@@ -56,6 +56,8 @@ You can also get up and running without npm, but it is not recommended to do so.
 
 Don't foget to `alias gg='noglob gg'` (alias `gg` to `noglob gg`) if you're using [prezto](https://github.com/sorin-ionescu/prezto), [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh), or something similar.
 
+As the standard git plugin for [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) already has uses `gg` as an alias for `git gui citool`, I recommend either unaliasing the [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin alias if you don't use it by placing `unalias gg` at the end of `~/.oh-my-zsh/plugins/git/git.plugin.zsh`, or aliasing `gg` with a different alias, such as `ggg`.
+
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
