@@ -118,3 +118,4 @@ TODO:
 * handling for freshly initialized git repositories status
 * support for specifying path of repository initialization and cloning
 * unit tests
+* split git add and git a/git aa (add allows you to specify, a/aa add all)
