@@ -7,7 +7,7 @@ process.bin = process.title = 'gg';
 var gg = require('../lib/gg.js');
 var cli = require('cli');
 
-cli.parse(null, ['i', 'init', 'initialize', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'commit', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 's', 'status', 'l', 'log']);
+cli.parse(null, ['i', 'init', 'initialize', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'commit', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log']);
 
 switch (cli.command) {
 	// Initialize.
@@ -64,7 +64,7 @@ switch (cli.command) {
 	case 'fetch':
 		gg.fetch();
 		break;
-		
+
 	case 'fa': // Short for 'fetch --all'.
 		gg.fetchAll();
 		break;
