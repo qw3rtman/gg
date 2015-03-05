@@ -42,6 +42,7 @@ switch (cli.command) {
 
 	// Commit.
 	case 'c':
+	case 'ci':
 	case 'commit':
 		var message = cli.args.join(' ');
 		gg.commit(message);
