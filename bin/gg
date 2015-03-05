@@ -72,6 +72,7 @@ switch (cli.command) {
 
 	// Status.
 	case 's':
+	case 'st':
 	case 'status':
 		gg.status();
 		break;
