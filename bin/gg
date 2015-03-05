@@ -64,6 +64,10 @@ switch (cli.command) {
 	case 'fetch':
 		gg.fetch();
 		break;
+		
+	case 'fa': // Short for 'fetch --all'.
+		gg.fetchAll();
+		break;
 
 	// Status.
 	case 's':
