@@ -72,9 +72,12 @@ As the standard git plugin for [oh-my-zsh](https://github.com/robbyrussell/oh-my
 
 ### Adding changes
 ![add](http://qw3rtman.github.io/gg/screenshots/add.png)
+Specify which files to add.
 * `$ gg a`
-* `$ gg aa # add all`
 * `$ gg add`
+
+Add all files.
+* `$ gg aa`
 
 ### Committing changes
 ![commit](http://qw3rtman.github.io/gg/screenshots/commit.png)
@@ -120,4 +123,4 @@ TODO:
 * handling for freshly initialized git repositories status
 * support for specifying path of repository initialization and cloning
 * unit tests
-* split git add and git a/git aa (add allows you to specify, a/aa add all)
+* ~~split git add and git a/git aa (add allows you to specify, a/aa add all)~~ (Thanks, [@jackamo!](https://github.com/jackamo)
