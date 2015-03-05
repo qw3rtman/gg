@@ -20,7 +20,12 @@ switch (cli.command) {
 	case 'cl':
 	case 'clone':
 		var repository = cli.args[0];
-		gg.clone(repository);
+
+		if (repository.substring(0, 7) == 'http://') { // URL.
+			gg.cloneURL(repository);
+		} else {
+			gg.cloneGitHub(repository);
+		}
 		break;
 
 	// Add.
