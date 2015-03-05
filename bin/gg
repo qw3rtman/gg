@@ -35,6 +35,7 @@ switch (cli.command) {
 			gg.addSingle(target);
 		}
 		break;
+
 	case 'aa': // Short for 'add all'.
 		gg.addAll();
 		break;
