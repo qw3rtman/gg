@@ -90,6 +90,7 @@ Add all files.
 ### Committing changes
 ![commit](http://qw3rtman.github.io/gg/screenshots/commit.png)
 * `gg c`
+* `gg ci`
 * `gg commit`
 
 ### Pushing commits
@@ -113,6 +114,7 @@ Fetch all (`git fetch -all`)
 ### Viewing status
 ![status](http://qw3rtman.github.io/gg/screenshots/status.png)
 * `gg s`
+* `gg st`
 * `gg status`
 
 ### Viewing log
