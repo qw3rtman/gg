@@ -26,11 +26,11 @@ switch (cli.command) {
 	// Add.
 	case 'a':
 	case 'add':
-		if(cli.args[1] !== undefined){
+		if (cli.args[1] !== undefined) {
 			var options = cli.args[0];
 			var target = cli.args[1];
 			gg.addOptions(options, target);
-		}else{
+		} else {
 			var target = cli.args[0];
 			gg.addSingle(target);
 		}
