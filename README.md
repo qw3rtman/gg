@@ -58,6 +58,14 @@ Don't foget to `alias gg='noglob gg'` (alias `gg` to `noglob gg`) if you're usin
 
 As the standard git plugin for [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) already has uses `gg` as an alias for `git gui citool`, I recommend either unaliasing the [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin alias if you don't use it by placing `unalias gg` at the end of `~/.oh-my-zsh/plugins/git/git.plugin.zsh`, or aliasing `gg` with a different alias, such as `ggg`.
 
+## Updating
+Changes are published to the [npm package](https://www.npmjs.com/package/gitgoodies), which is kept up-to-date with this GitHub repository. Simply update via npm:
+
+```sh
+	# Update gg
+	$ npm update -g gitgoodies
+```
+
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
