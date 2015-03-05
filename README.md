@@ -61,56 +61,56 @@ As the standard git plugin for [oh-my-zsh](https://github.com/robbyrussell/oh-my
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
-* `$ gg i`
-* `$ gg init`
-* `$ gg initialize`
+* `gg i`
+* `gg init`
+* `gg initialize`
 
 ### Cloning repositories
 ![clone](http://qw3rtman.github.io/gg/screenshots/clone.png)
-* `$ gg cl`
-* `$ gg clone`
+* `gg cl`
+* `gg clone`
 
 ### Adding changes
 ![add](http://qw3rtman.github.io/gg/screenshots/add.png)
 Specify which files to add.
-* `$ gg a`
-* `$ gg add`
+* `gg a`
+* `gg add`
 
 Add all files.
-* `$ gg aa`
+* `gg aa`
 
 ### Committing changes
 ![commit](http://qw3rtman.github.io/gg/screenshots/commit.png)
-* `$ gg c`
-* `$ gg commit`
+* `gg c`
+* `gg commit`
 
 ### Pushing commits
 ![push](http://qw3rtman.github.io/gg/screenshots/push.png)
-* `$ gg p`
-* `$ gg push`
+* `gg p`
+* `gg push`
 
 ### Pulling commits
 ![pull](http://qw3rtman.github.io/gg/screenshots/pull.png)
-* `$ gg pl`
-* `$ gg pull`
+* `gg pl`
+* `gg pull`
 
 ### Fetching commits
 ![fetch](http://qw3rtman.github.io/gg/screenshots/fetch.png)
-* `$ gg f`
-* `$ gg fetch`
+* `gg f`
+* `gg fetch`
 
 Fetch all (`git fetch -all`)
-* `$ gg fa`
+* `gg fa`
 
 ### Viewing status
 ![status](http://qw3rtman.github.io/gg/screenshots/status.png)
-* `$ gg s`
-* `$ gg status`
+* `gg s`
+* `gg status`
 
 ### Viewing log
 ![log](http://qw3rtman.github.io/gg/screenshots/log.png)
-* `$ gg l`
-* `$ gg log`
+* `gg l`
+* `gg log`
 
 ## Contributing
 Contributions are always welcome.
