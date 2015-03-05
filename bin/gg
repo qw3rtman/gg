@@ -25,8 +25,17 @@ switch (cli.command) {
 
 	// Add.
 	case 'a':
-	case 'aa': // Short for 'add all'.
 	case 'add':
+		if(cli.args[1] !== undefined){
+			var options = cli.args[0];
+			var target = cli.args[1];
+			gg.addOptions(options, target);
+		}else{
+			var target = cli.args[0];
+			gg.addSingle(target);
+		}
+		break;
+	case 'aa': // Short for 'add all'.
 		gg.addAll();
 		break;
 
