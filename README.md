@@ -58,56 +58,67 @@ Don't foget to `alias gg='noglob gg'` (alias `gg` to `noglob gg`) if you're usin
 
 As the standard git plugin for [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) already has uses `gg` as an alias for `git gui citool`, I recommend either unaliasing the [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin alias if you don't use it by placing `unalias gg` at the end of `~/.oh-my-zsh/plugins/git/git.plugin.zsh`, or aliasing `gg` with a different alias, such as `ggg`.
 
+## Updating
+Changes are published to the [npm package](https://www.npmjs.com/package/gitgoodies), which is kept up-to-date with this GitHub repository. Simply update via npm:
+
+```sh
+	# Update gg
+	$ npm update -g gitgoodies
+```
+
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
-* `$ gg i`
-* `$ gg init`
-* `$ gg initialize`
+* `gg i`
+* `gg init`
+* `gg initialize`
 
 ### Cloning repositories
 ![clone](http://qw3rtman.github.io/gg/screenshots/clone.png)
-* `$ gg cl`
-* `$ gg clone`
+* `gg cl`
+* `gg clone`
 
 ### Adding changes
 ![add](http://qw3rtman.github.io/gg/screenshots/add.png)
 Specify which files to add.
-* `$ gg a`
-* `$ gg add`
+* `gg a`
+* `gg add`
 
 Add all files.
-* `$ gg aa`
+* `gg aa`
 
 ### Committing changes
 ![commit](http://qw3rtman.github.io/gg/screenshots/commit.png)
-* `$ gg c`
-* `$ gg commit`
+* `gg c`
+* `gg commit`
 
 ### Pushing commits
 ![push](http://qw3rtman.github.io/gg/screenshots/push.png)
-* `$ gg p`
-* `$ gg push`
+* `gg p`
+* `gg push`
 
 ### Pulling commits
 ![pull](http://qw3rtman.github.io/gg/screenshots/pull.png)
-* `$ gg pl`
-* `$ gg pull`
+* `gg pl`
+* `gg pull`
 
 ### Fetching commits
 ![fetch](http://qw3rtman.github.io/gg/screenshots/fetch.png)
-* `$ gg f`
-* `$ gg fetch`
+* `gg f`
+* `gg fetch`
+
+Fetch all (`git fetch -all`)
+* `gg fa`
 
 ### Viewing status
 ![status](http://qw3rtman.github.io/gg/screenshots/status.png)
-* `$ gg s`
-* `$ gg status`
+* `gg s`
+* `gg status`
 
 ### Viewing log
 ![log](http://qw3rtman.github.io/gg/screenshots/log.png)
-* `$ gg l`
-* `$ gg log`
+* `gg l`
+* `gg log`
 
 ## Contributing
 Contributions are always welcome.
@@ -123,4 +134,4 @@ TODO:
 * handling for freshly initialized git repositories status
 * support for specifying path of repository initialization and cloning
 * unit tests
-* ~~split git add and git a/git aa (add allows you to specify, a/aa add all)~~ (Thanks, [@jackamo!](https://github.com/jackamo))
+* [custom routines](https://github.com/qw3rtman/gg/issues/5)
