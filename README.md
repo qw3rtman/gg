@@ -66,6 +66,25 @@ Changes are published to the [npm package](https://www.npmjs.com/package/gitgood
 	$ npm update -g gitgoodies
 ```
 
+## FAQ
+### Hold up. Aren't these basically Git aliases?
+There's more to the package than just shortcuts or aliases.
+
+For example, the `gg s` command presents you with an easy to look at a quick glance status of your repository. In addition, there are aesthetic changes that increase the intuitiveness of Git itself.
+
+Here's a screenshot of the `gg s` command in action:
+
+![`gg s`](http://i.imgur.com/qXSPuv4.jpg)
+
+### Why Node?
+There's nothing special in Node that caused me to select it for this project. I wanted to get my feet wet with a new language and was recommended to try Node.
+
+As Node is fairly popular (from what I've seen), I didn't think the issue of an extra dependency would exist.
+
+In addition, I felt Node would widen the audience that could both understand and contribute to `gg`, compared to Bash.
+
+Also, Node is platform-agnostic, unlike Bash, which is only happy on Unix-based systems.
+
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
