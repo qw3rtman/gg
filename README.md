@@ -85,6 +85,11 @@ In addition, I felt Node would widen the audience that could both understand and
 
 Also, Node is platform-agnostic, unlike Bash, which is only happy on Unix-based systems.
 
+### How do I get my shell to look like the screenshots?
+I'm using the [zsh shell](http://www.zsh.org/) with the miloshadzic [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) theme.
+
+If you are having issues with how `gg` looks and not the shell itself, please submit an issue and we'll attempt to solve the problem.
+
 ## Usage
 ### Initializing repositories
 ![initialize](http://qw3rtman.github.io/gg/screenshots/initialize.png)
