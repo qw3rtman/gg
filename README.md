@@ -141,6 +141,16 @@ Fetch all (`git fetch -all`)
 * `gg l`
 * `gg log`
 
+### Creating branches
+![branch](http://qw3rtman.github.io/gg/screenshots/branch.png)
+* `gg b`
+* `gg b new-branch`
+
+* `gg branch`
+* `gg branch new-branch`
+
+### Checking out branches
+
 ## Contributing
 Contributions are always welcome.
 
