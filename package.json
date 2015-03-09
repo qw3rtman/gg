@@ -34,6 +34,6 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "cli": "^0.6.5",
-    "gignore": "0.0.1"
+    "request": "^2.53.0"
   }
 }

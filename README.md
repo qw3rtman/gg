@@ -96,7 +96,6 @@ Also, Node is platform-agnostic, unlike Bash, which is only happy on Unix-based 
 ![gitignore](http://qw3rtman.github.io/gg/screenshots/gitignore.png)
 * `gg ig`
 * `gg ignore`
-
 * `gg ig java`
 * `gg ignore java`
 
