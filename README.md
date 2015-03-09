@@ -145,6 +145,7 @@ Fetch all (`git fetch -all`)
 ![branch](http://qw3rtman.github.io/gg/screenshots/branch.png)
 * `gg b`
 * `gg branch`
+
 * `gg b new-branch`
 * `gg branch new-branch`
 
@@ -152,6 +153,7 @@ Fetch all (`git fetch -all`)
 ![checkout](http://qw3rtman.github.io/gg/screenshots/checkout.png)
 * `gg ch`
 * `gg checkout`
+
 * `gg ch new-branch`
 * `gg checkout new-branch`
 
