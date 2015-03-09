@@ -28,7 +28,11 @@ switch (cli.command) {
 	case 'clone':
 		var repository = cli.args[0];
 
-		if (repository.substring(0, 7) == 'http://') { // URL.
+		if (typeof repository === 'undefined') {
+			repository = '';
+		}
+
+		if (repository.substring(0, 7) === 'http://' || repository.substring(0, 8) === 'https://') { // URL.
 			gg.cloneURL(repository);
 		} else {
 			gg.cloneGitHub(repository);
