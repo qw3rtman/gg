@@ -144,12 +144,16 @@ Fetch all (`git fetch -all`)
 ### Creating branches
 ![branch](http://qw3rtman.github.io/gg/screenshots/branch.png)
 * `gg b`
-* `gg b new-branch`
-
 * `gg branch`
+* `gg b new-branch`
 * `gg branch new-branch`
 
 ### Checking out branches
+![checkout](http://qw3rtman.github.io/gg/screenshots/checkout.png)
+* `gg ch`
+* `gg checkout`
+* `gg ch new-branch`
+* `gg checkout new-branch`
 
 ## Contributing
 Contributions are always welcome.
