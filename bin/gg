@@ -7,7 +7,7 @@ process.bin = process.title = 'gg';
 var gg = require('../lib/gg.js');
 var cli = require('cli');
 
-cli.parse(null, ['i', 'init', 'initialize', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'commit', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
+cli.parse(null, ['i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'commit', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
 
 switch (cli.command) {
 	// Initialize.
@@ -15,6 +15,13 @@ switch (cli.command) {
 	case 'init':
 	case 'initialize':
 		gg.init();
+		break;
+
+	case 'ig':
+	case 'ignore':
+		var template = cli.args.join('-');
+
+		gg.ignore(template);
 		break;
 
 	case 'cl':
