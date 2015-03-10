@@ -1,7 +1,14 @@
 `gg`
 ==
+[![Build Status](https://travis-ci.org/qw3rtman/gg.svg?branch=master)](https://travis-ci.org/qw3rtman/gg)&nbsp;
+![](https://img.shields.io/npm/dm/gitgoodies.svg)&nbsp;
+![npm version](http://img.shields.io/npm/v/gitgoodies.svg)&nbsp;
+[![npm version](https://badge.fury.io/js/gitgoodies.svg)](http://badge.fury.io/js/gitgoodies)&nbsp;
+![](https://img.shields.io/npm/l/express.svg)&nbsp;
+[![NPM](https://nodei.co/npm/gitgoodies.png?mini=true)](https://nodei.co/npm/gitgoodies/)
 
-the cookbook of git goodies
+
+##The Cookbook of Git Goodies
 
 ![status](http://qw3rtman.github.io/gg/screenshots/status.png)
 ![log](http://qw3rtman.github.io/gg/screenshots/log.png)
