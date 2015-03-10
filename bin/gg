@@ -7,7 +7,7 @@ process.bin = process.title = 'gg';
 var gg = require('../lib/gg.js');
 var cli = require('cli');
 
-cli.parse(null, ['i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
+cli.parse(null, ['i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'cn', 'commitnoadd', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
 
 switch (cli.command) {
 	// Initialize.
@@ -44,7 +44,7 @@ switch (cli.command) {
 	// Add.
 	case 'a':
 	case 'add':
-		if (cli.args[1] !== undefined) {
+		if (cli.args[1] === '' || typeof cli.args[1] !== 'undefined') {
 			var options = cli.args[0];
 			var target = cli.args[1];
 			gg.addOptions(options, target);
@@ -63,7 +63,12 @@ switch (cli.command) {
 	case 'ci':
 	case 'commit':
 		var message = cli.args.join(' ');
-		gg.commit(message);
+		gg.commit(message, true);
+		break;
+
+	case 'cn':
+		var message = cli.args.join(' ');
+		gg.commit(message, false);
 		break;
 
 	// Push.
