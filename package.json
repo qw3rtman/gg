@@ -23,6 +23,9 @@
   "bugs": {
     "url": "https://github.com/qw3rtman/gg/issues"
   },
+  "scripts": {
+    "test": "jscs -p airbnb lib bin"
+  },
   "homepage": "https://github.com/qw3rtman/gg",
   "engines": {
     "node": ">=0.10.0"
@@ -35,5 +38,8 @@
     "chalk": "^1.0.0",
     "cli": "^0.6.5",
     "request": "^2.53.0"
+  },
+  "devDependencies": {
+    "jscs": "~1.11.3"
   }
 }
