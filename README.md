@@ -106,8 +106,12 @@ If you are having issues with how `gg` looks and not the shell itself, please su
 
 ### Cloning repositories
 ![clone](http://qw3rtman.github.io/gg/screenshots/clone.png)
-* `gg cl`
-* `gg clone`
+* `gg cl https://github.com/holman/spark.git`
+* `gg clone https://github.com/holman/spark.git`
+* `gg cl git@github.com:holman/spark.git`
+* `gg clone git@github.com:holman/spark.git`
+* `gg cl holman/spark`
+* `gg clone holman/spark`
 
 ### Adding changes
 ![add](http://qw3rtman.github.io/gg/screenshots/add.png)
