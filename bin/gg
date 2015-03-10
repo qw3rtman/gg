@@ -10,111 +10,111 @@ var cli = require('cli');
 cli.parse(null, ['i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'cn', 'commitnoadd', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
 
 switch (cli.command) {
-	// Initialize.
-	case 'i':
-	case 'init':
-	case 'initialize':
-		gg.init();
-		break;
+  // Initialize.
+  case 'i':
+  case 'init':
+  case 'initialize':
+    gg.init();
+    break;
 
-	case 'ig':
-	case 'ignore':
-		var template = cli.args.join('-');
+  case 'ig':
+  case 'ignore':
+    var template = cli.args.join('-');
 
-		gg.ignore(template);
-		break;
+    gg.ignore(template);
+    break;
 
-	case 'cl':
-	case 'clone':
-		var repository = cli.args[0];
+  case 'cl':
+  case 'clone':
+    var repository = cli.args[0];
 
-		if (typeof repository === 'undefined') {
-			repository = '';
-		}
+    if (typeof repository === 'undefined') {
+      repository = '';
+    }
 
-		if (repository.substring(0, 7) === 'http://' || repository.substring(0, 8) === 'https://') { // URL.
-			gg.clone(repository);
-		} else if (repository.indexOf('@') > -1 && repository.indexOf(':') > -1) { // SSH.
-			gg.clone(repository);
-		} else {
-			gg.cloneGitHub(repository);
-		}
-		break;
+    if (repository.substring(0, 7) === 'http://' || repository.substring(0, 8) === 'https://') { // URL.
+      gg.clone(repository);
+    } else if (repository.indexOf('@') > -1 && repository.indexOf(':') > -1) { // SSH.
+      gg.clone(repository);
+    } else {
+      gg.cloneGitHub(repository);
+    }
+    break;
 
-	// Add.
-	case 'a':
-	case 'add':
-		if (cli.args[1] === '' || typeof cli.args[1] !== 'undefined') {
-			var options = cli.args[0];
-			var target = cli.args[1];
-			gg.addOptions(options, target);
-		} else {
-			var target = cli.args[0];
-			gg.addSingle(target);
-		}
-		break;
+  // Add.
+  case 'a':
+  case 'add':
+    if (cli.args[1] === '' || typeof cli.args[1] !== 'undefined') {
+      var options = cli.args[0];
+      var target = cli.args[1];
+      gg.addOptions(options, target);
+    } else {
+      var target = cli.args[0];
+      gg.addSingle(target);
+    }
+    break;
 
-	case 'aa': // Short for 'add all'.
-		gg.addAll();
-		break;
+  case 'aa': // Short for 'add all'.
+    gg.addAll();
+    break;
 
-	// Commit.
-	case 'c':
-	case 'ci':
-	case 'commit':
-		var message = cli.args.join(' ');
-		gg.commit(message, true);
-		break;
+  // Commit.
+  case 'c':
+  case 'ci':
+  case 'commit':
+    var message = cli.args.join(' ');
+    gg.commit(message, true);
+    break;
 
-	case 'cn':
-		var message = cli.args.join(' ');
-		gg.commit(message, false);
-		break;
+  case 'cn':
+    var message = cli.args.join(' ');
+    gg.commit(message, false);
+    break;
 
-	// Push.
-	case 'p':
-	case 'push':
-		gg.push();
-		break;
+  // Push.
+  case 'p':
+  case 'push':
+    gg.push();
+    break;
 
-	// Pull.
-	case 'pl':
-	case 'pull':
-		gg.pull();
-		break;
+  // Pull.
+  case 'pl':
+  case 'pull':
+    gg.pull();
+    break;
 
-	// Fetch.
-	case 'f':
-	case 'fetch':
-		gg.fetch();
-		break;
+  // Fetch.
+  case 'f':
+  case 'fetch':
+    gg.fetch();
+    break;
 
-	case 'fa': // Short for 'fetch --all'.
-		gg.fetchAll();
-		break;
+  case 'fa': // Short for 'fetch --all'.
+    gg.fetchAll();
+    break;
 
-	// Status.
-	case 's':
-	case 'st':
-	case 'status':
-		gg.status();
-		break;
+  // Status.
+  case 's':
+  case 'st':
+  case 'status':
+    gg.status();
+    break;
 
-	// Log.
-	case 'l':
-	case 'log':
-		gg.log();
-		break;
+  // Log.
+  case 'l':
+  case 'log':
+    gg.log();
+    break;
 
-	case 'b':
-	case 'branch':
-		var branch = cli.args.join('-');
-		gg.branch(branch);
-		break;
+  case 'b':
+  case 'branch':
+    var branch = cli.args.join('-');
+    gg.branch(branch);
+    break;
 
-	case 'ch':
-	case 'checkout':
-		var branch = cli.args.join('-');
-		gg.checkout(branch);
-		break;
+  case 'ch':
+  case 'checkout':
+    var branch = cli.args.join('-');
+    gg.checkout(branch);
+    break;
 }
