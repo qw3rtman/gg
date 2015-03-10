@@ -106,8 +106,12 @@ If you are having issues with how `gg` looks and not the shell itself, please su
 
 ### Cloning repositories
 ![clone](http://qw3rtman.github.io/gg/screenshots/clone.png)
-* `gg cl`
-* `gg clone`
+* `gg cl https://github.com/holman/spark.git`
+* `gg clone https://github.com/holman/spark.git`
+* `gg cl git@github.com:holman/spark.git`
+* `gg clone git@github.com:holman/spark.git`
+* `gg cl holman/spark`
+* `gg clone holman/spark`
 
 ### Adding changes
 ![add](http://qw3rtman.github.io/gg/screenshots/add.png)
@@ -175,10 +179,8 @@ We follow [Airbnb's coding standard](https://github.com/airbnb/javascript), so m
 Fork our code, make a new branch, and send a pull request.
 
 TODO:
-* support for branches
-* handling for non-fast-forwards (when you need to pull first, merge, and then push)
 * handling for merge conflicts
-* handling for freshly initialized git repositories status
 * support for specifying path of repository initialization and cloning
 * unit tests
 * [custom routines](https://github.com/qw3rtman/gg/issues/5)
+* check if directory is an existing Git repository or not
