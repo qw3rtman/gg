@@ -33,7 +33,9 @@ switch (cli.command) {
 		}
 
 		if (repository.substring(0, 7) === 'http://' || repository.substring(0, 8) === 'https://') { // URL.
-			gg.cloneURL(repository);
+			gg.clone(repository);
+		} else if (repository.indexOf('@') > -1 && repository.indexOf(':') > -1) { // SSH.
+			gg.clone(repository);
 		} else {
 			gg.cloneGitHub(repository);
 		}
