@@ -191,3 +191,4 @@ TODO:
 * unit tests
 * [custom routines](https://github.com/qw3rtman/gg/issues/5)
 * check if directory is an existing Git repository or not
+* proper colors, regardless of terminal colors/themes.
