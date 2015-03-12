@@ -193,3 +193,4 @@ TODO:
 * check if directory is an existing Git repository or not
 * proper colors, regardless of terminal colors/themes.
 * add verbose option (`gg pl v`, etc.)
+* **switch over to [libgit2](https://libgit2.github.com)**
