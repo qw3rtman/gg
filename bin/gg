@@ -7,7 +7,7 @@ process.bin = process.title = 'gg';
 var gg = require('../lib/gg.js');
 var cli = require('cli');
 
-cli.parse(null, ['i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'cn', 'commitnoadd', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'lf', 'b', 'branch', 'ch', 'checkout']);
+cli.parse(null, ['i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'cn', 'commitnoadd', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
 
 switch (cli.command) {
   // Initialize.
@@ -104,12 +104,7 @@ switch (cli.command) {
   case 'l':
   case 'log':
     var file = cli.args.join(' ');
-    gg.log(file, false);
-    break;
-  // Get log for a specific file
-  case 'lf':
-    var file = cli.args.join(' ');
-    gg.log(file, true);
+    gg.log(file);
     break;
 
   case 'b':
