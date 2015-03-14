@@ -4,7 +4,7 @@
 ![](https://img.shields.io/npm/dm/gitgoodies.svg)&nbsp;
 ![npm version](http://img.shields.io/npm/v/gitgoodies.svg)&nbsp;
 [![npm version](https://badge.fury.io/js/gitgoodies.svg)](http://badge.fury.io/js/gitgoodies)&nbsp;
-![](https://img.shields.io/npm/l/express.svg)&nbsp;
+![](https://img.shields.io/npm/l/express.svg)&nbsp;  
 [![NPM](https://nodei.co/npm/gitgoodies.png?mini=true)](https://nodei.co/npm/gitgoodies/)
 
 
