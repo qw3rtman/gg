@@ -135,4 +135,4 @@ switch (cli.command) {
     break;
 }
 
-gg.upToDate(false)
+gg.upToDate(false, true);
