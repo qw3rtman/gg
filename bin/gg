@@ -116,7 +116,8 @@ switch (cli.command) {
   // Log.
   case 'l':
   case 'log':
-    gg.log();
+    var file = cli.args.join(' ');
+    gg.log(file);
     break;
 
   // Branch.
