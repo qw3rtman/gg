@@ -25,6 +25,7 @@ switch (cli.command) {
     gg.init();
     break;
 
+  // .gitignores.
   case 'ig':
   case 'ignore':
     var template = cli.args.join('-');
@@ -32,6 +33,7 @@ switch (cli.command) {
     gg.ignore(template);
     break;
 
+  // Clone.
   case 'cl':
   case 'clone':
     var repository = cli.args[0];
@@ -62,6 +64,7 @@ switch (cli.command) {
     }
     break;
 
+  // Add all.
   case 'aa': // Short for 'add all'.
     gg.addAll();
     break;
@@ -74,6 +77,7 @@ switch (cli.command) {
     gg.commit(message, true);
     break;
 
+  // Commit without adding.
   case 'cn':
     var message = cli.args.join(' ');
     gg.commit(message, false);
@@ -97,6 +101,7 @@ switch (cli.command) {
     gg.fetch();
     break;
 
+  // Fetch all.
   case 'fa': // Short for 'fetch --all'.
     gg.fetchAll();
     break;
@@ -114,12 +119,14 @@ switch (cli.command) {
     gg.log();
     break;
 
+  // Branch.
   case 'b':
   case 'branch':
     var branch = cli.args.join('-');
     gg.branch(branch);
     break;
 
+  // Checkout.
   case 'ch':
   case 'checkout':
     var branch = cli.args.join('-');
