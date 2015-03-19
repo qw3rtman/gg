@@ -37,6 +37,7 @@
   "dependencies": {
     "chalk": "^1.0.0",
     "cli": "^0.6.5",
+    "latest-version": "^1.0.0",
     "request": "^2.53.0"
   },
   "devDependencies": {
