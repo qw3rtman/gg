@@ -191,6 +191,8 @@ TODO:
 * unit tests
 * [custom routines](https://github.com/qw3rtman/gg/issues/5)
 * check if directory is an existing Git repository or not
-* proper colors, regardless of terminal colors/themes.
+* proper colors, regardless of terminal colors/themes
 * add verbose option (`gg pl v`, etc.)
 * **switch over to [libgit2](https://libgit2.github.com)**
+* undo last commit
+* add custom files/directories to .gitignore
