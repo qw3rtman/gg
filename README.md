@@ -196,3 +196,4 @@ TODO:
 * **switch over to [libgit2](https://libgit2.github.com)**
 * undo last commit
 * add custom files/directories to .gitignore
+* **introduction scene to Git** (for those new to Git)
