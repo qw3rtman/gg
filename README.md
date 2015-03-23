@@ -1,5 +1,5 @@
 `gg`
-==
+====
 [![Build Status](https://travis-ci.org/qw3rtman/gg.svg?branch=master)](https://travis-ci.org/qw3rtman/gg)&nbsp;
 ![](https://img.shields.io/npm/dm/gitgoodies.svg)&nbsp;
 ![npm version](http://img.shields.io/npm/v/gitgoodies.svg)&nbsp;
