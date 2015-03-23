@@ -185,7 +185,7 @@ We follow [Airbnb's coding standard](https://github.com/airbnb/javascript), so m
 
 Fork our code, make a new branch, and send a pull request.
 
-TODO:
+## TODO:
 * handling for merge conflicts
 * support for specifying path of repository initialization and cloning
 * unit tests
