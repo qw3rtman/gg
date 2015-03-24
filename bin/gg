@@ -88,7 +88,10 @@ switch (cli.command) {
   case 'push':
     gg.push();
     break;
+
+  // Push branch to origin.
   case 'pb':
+  case 'push branch':
     gg.pushBranch();
     break;
 
