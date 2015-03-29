@@ -7,7 +7,7 @@ process.bin = process.title = 'gg';
 var gg = require('../lib/gg.js');
 var cli = require('cli');
 
-cli.parse(null, ['v', 'version', '-v', '--version', 'i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'cn', 'commitnoadd', 'p', 'push', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
+cli.parse(null, ['v', 'version', '-v', '--version', 'i', 'init', 'initialize', 'ig', 'ignore', 'cl', 'clone', 'a', 'aa', 'add', 'c', 'ci', 'commit', 'cn', 'commitnoadd', 'p', 'push', 'pb', 'pl', 'pull', 'f', 'fetch', 'fa', 's', 'status', 'l', 'log', 'b', 'branch', 'ch', 'checkout']);
 
 switch (cli.command) {
   // Version.
@@ -87,6 +87,11 @@ switch (cli.command) {
   case 'p':
   case 'push':
     gg.push();
+    break;
+
+  // Push branch to origin.
+  case 'pb':
+    gg.pushBranch();
     break;
 
   // Pull.
