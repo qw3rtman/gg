@@ -197,3 +197,4 @@ Fork our code, make a new branch, and send a pull request.
 * undo last commit
 * add custom files/directories to .gitignore
 * **introduction scene to Git** (for those new to Git)
+* [switch to previously selected branch](https://github.com/qw3rtman/gg/issues/40)
