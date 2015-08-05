@@ -8,6 +8,10 @@ success() {
 	printf "\e[0;32m$@\e[0m"
 }
 
+success_underline() {
+	printf "\e[4;32m$@\e[0m"
+}
+
 notice() {
 	printf "\e[0;33m$@\e[0m"
 }
