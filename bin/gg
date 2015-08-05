@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+# Setup.
+
+VERSION="0.0.1"
