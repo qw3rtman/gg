@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
 # Setup.
-
 VERSION="0.0.1"
+
+# Colors, etc.
+success() {
+	printf "\e[0;32m$@\e[0m"
+}
