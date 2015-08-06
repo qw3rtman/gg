@@ -144,3 +144,10 @@ add() {
 		done
 	fi
 }
+
+commit() {
+	if [ -z $1 ]; then
+		message=$(git diff --name-only --cached)
+		message="Added ${message//$'\n'/, }."
+	fi
+}
