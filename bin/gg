@@ -16,6 +16,10 @@ notice() {
 	printf "\e[0;33m$@\e[0m"
 }
 
+notice_underline () {
+	printf "\e[4;33m$@\e[0m"
+}
+
 whoops() {
 	printf "\e[1;31m$@\e[0m"
 }
