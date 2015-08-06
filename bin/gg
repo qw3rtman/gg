@@ -176,7 +176,7 @@ commitNoAdd() {
 	if [ $? -eq 0 ]; then
 		success "[✔] Committed!\n\n"
 
-		hash="$(git rev-parse --short HEAD)"
+		hash="$(latest_commit_hash)"
 
 		branch="$(git symbolic-ref --short HEAD)"
 
