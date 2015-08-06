@@ -175,7 +175,7 @@ commit() {
 			message_array+=("$line")
 		done <<< "$message"
 		message_fixed="${message_array[0]}"
-		if [ ${#message_array[@]} > 1 ]; then
+		if [ ${#message_array[@]} -gt 1 ]; then
 			message_fixed="$message_fixed (...)"
 		fi
 
