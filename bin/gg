@@ -130,5 +130,17 @@ add() {
 		git add -A
 
 		success "[✔] Added everything!\n"
+	else
+		for file in $@; do
+			if [ -e $file ]; then
+				git add $file
+
+				success "[✔] Added"
+				success_bold " $file"
+				success "!\n"
+			else
+				whoops "[✖] Could not add $file.\n"
+			fi
+		done
 	fi
 }
