@@ -47,3 +47,18 @@ init() {
 	success_bold " ${output[0]} "
 	success "${output[1]} Git repository.\n"
 }
+
+ignore() {
+	if [ -n $1 ]; then
+		list=$(curl --silent "https://www.gitignore.io/api/list")
+		list=(${list//,/ })
+
+		for ignore in "${list[@]}"; do
+			normal "|- $ignore\n"
+		done
+
+		notice "\n[~] You must enter one of the templates or languages listed above.\n"
+	fi
+}
+
+ignore
