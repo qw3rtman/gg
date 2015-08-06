@@ -184,7 +184,7 @@ commitNoAdd() {
 
 		branch="$(git symbolic-ref --short HEAD)"
 
-		message="$(git log -1 --pretty=%B)"
+		message="$(latest_commit_message)"
 		message_array=()
 		while read -r line; do
 			message_array+=("$line")
