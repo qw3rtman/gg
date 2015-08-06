@@ -169,6 +169,8 @@ commit() {
 
 		hash="$(git rev-parse --short HEAD)"
 
+		branch="$(git symbolic-ref --short HEAD)"
+
 		message="$(git log -1 --pretty=%B)"
 		message_array=()
 		while read -r line; do
@@ -179,12 +181,7 @@ commit() {
 			message_fixed="$message_fixed (...)"
 		fi
 
-		files="$(git diff-tree --no-commit-id --name-only -r --root HEAD)"
-		files="${files//$'\n'/, }"
-
-		log "hash" "$hash"
-		log "message" "$message_fixed"
-		log "files" "$files"
+		printf "\e[2m\e[90m[\e[22m\e[0m$(success $branch)\e[2m\e[90m|\e[22m\e[0m$(notice $hash)\e[2m\e[90m]\e[22m\e[0m \e[90m$message_fixed\e[39m\n"
 	elif [ $? -eq 1 ]; then
 		notice "[~] Everything already committed.\n"
 	else
