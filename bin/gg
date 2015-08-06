@@ -167,7 +167,7 @@ commit() {
 	if [ $? -eq 0 ]; then
 		success "[✔] Committed!\n\n"
 
-		hash="asd"
+		hash="$(git rev-parse --short HEAD)"
 
 		message="$(git log -1 --pretty=%B)"
 		message_array=()
