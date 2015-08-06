@@ -27,3 +27,9 @@ notice_underline () {
 whoops() {
 	printf "\e[1;31m$1\e[0m"
 }
+
+version() {
+	success "gg"
+	normal " version "
+	notice "$VERSION\n"
+}
