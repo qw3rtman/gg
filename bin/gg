@@ -24,6 +24,10 @@ notice() {
 	printf "\e[0;33m$1\e[0m"
 }
 
+notice_bold() {
+	printf "\e[1;33m$1\e[0m"
+}
+
 notice_underline () {
 	printf "\e[4;33m$1\e[0m"
 }
