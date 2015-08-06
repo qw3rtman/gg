@@ -12,6 +12,10 @@ success() {
 	printf "\e[0;32m$1\e[0m"
 }
 
+success_bold() {
+	printf "\e[1;32m$1\e[0m"
+}
+
 success_underline() {
 	printf "\e[4;32m$1\e[0m"
 }
@@ -28,8 +32,18 @@ whoops() {
 	printf "\e[1;31m$1\e[0m"
 }
 
+# Commands.
+
 version() {
 	success "gg"
 	normal " version "
 	notice "$VERSION\n"
+}
+
+init() {
+	output=($(git init))
+
+	success "[✔]"
+	success_bold " ${output[0]} "
+	success "${output[1]} Git repository.\n"
 }
