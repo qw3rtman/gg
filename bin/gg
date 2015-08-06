@@ -48,6 +48,11 @@ log_active() {
 	printf "\e[3m%s\e[22m \e[2m\e[90m|\e[22m\e[0m \e[33m%s\e[0m\n" "$1" "$2"
 }
 
+# Utilities.
+latest_commit_hash() {
+	git rev-parse --short HEAD
+}
+
 # Commands.
 
 version() {
