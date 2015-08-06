@@ -124,3 +124,11 @@ clone() {
 		fi
 	fi
 }
+
+add() {
+	if [ -z $1 ]; then
+		git add -A
+
+		success "[✔] Added everything!\n"
+	fi
+}
