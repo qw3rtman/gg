@@ -4,6 +4,10 @@
 VERSION="0.0.1"
 
 # Colors, etc.
+normal() {
+	printf "$1"
+}
+
 success() {
 	printf "\e[0;32m$1\e[0m"
 }
