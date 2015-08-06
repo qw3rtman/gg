@@ -165,7 +165,22 @@ commit() {
 
 	OUTPUT=$(git commit -m "$message")
 	if [ $? -eq 0 ]; then
-		success "[✔] Committed!\n"
+		success "[✔] Committed!\n\n"
+
+		hash="asd"
+
+		message="$(git log -1 --pretty=%B)"
+		message_array=()
+		while read -r line; do
+			message_array+=("$line")
+		done <<< "$message"
+		message_fixed="${message_array[0]}"
+		if [ ${#message_array[@]} > 1 ]; then
+			message_fixed="$message_fixed (...)"
+		fi
+
+		log "hash" "$hash"
+		log "message" "$message_fixed"
 	elif [ $? -eq 1 ]; then
 		notice "[~] Everything already committed.\n"
 	else
