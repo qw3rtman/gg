@@ -179,8 +179,12 @@ commit() {
 			message_fixed="$message_fixed (...)"
 		fi
 
+		files="$(git diff-tree --no-commit-id --name-only -r --root HEAD)"
+		files="${files//$'\n'/, }"
+
 		log "hash" "$hash"
 		log "message" "$message_fixed"
+		log "files" "$files"
 	elif [ $? -eq 1 ]; then
 		notice "[~] Everything already committed.\n"
 	else
