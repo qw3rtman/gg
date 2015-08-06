@@ -186,7 +186,7 @@ commitNoAdd() {
 
 		hash="$(latest_commit_hash)"
 
-		branch="$(git symbolic-ref --short HEAD)"
+		branch="$(current_branch)"
 
 		message="$(latest_commit_message)"
 		message_array=()
