@@ -57,6 +57,10 @@ latest_commit_message() {
 	git log -1 --pretty=%B
 }
 
+current_branch() {
+	git symbolic-ref --short HEAD
+}
+
 # Commands.
 
 version() {
