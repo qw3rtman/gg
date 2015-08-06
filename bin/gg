@@ -48,17 +48,34 @@ init() {
 	success "${output[1]} Git repository.\n"
 }
 
-ignore() {
-	if [ -n $1 ]; then
-		list=$(curl --silent "https://www.gitignore.io/api/list")
-		list=(${list//,/ })
+ignore_list() {
+	list=$(curl --silent "https://www.gitignore.io/api/list")
+	list=(${list//,/ })
 
-		for ignore in "${list[@]}"; do
-			normal "|- $ignore\n"
-		done
+	for ignore in "${list[@]}"; do
+		normal "|- $ignore\n"
+	done
 
-		notice "\n[~] You must enter one of the templates or languages listed above.\n"
-	fi
+	notice "\n[~] You must enter one of the templates or languages listed above.\n"
 }
 
-ignore
+ignore() {
+	if [ -z $1 ]; then
+		ignore_list
+	else
+		ignore=$(curl --silent "https://www.gitignore.io/api/$1")
+		ignore_array=($ignore)
+
+		if [ ${ignore_array[5]} == "ERROR:" ]; then
+			whoops "[✖] Template $1 does not exist.\n\n"
+
+			ignore_list
+		else
+			if [[ -s ".gitignore" ]]; then
+				echo -e	 "\n" >> .gitignore
+			fi
+
+			echo "$ignore" >> .gitignore
+		fi
+	fi
+}
