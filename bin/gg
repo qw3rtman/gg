@@ -36,6 +36,10 @@ whoops() {
 	printf "\e[1;31m$1\e[0m"
 }
 
+whoops_subtext() {
+	printf "\e[0;31m$1\e[0m"
+}
+
 # Commands.
 
 version() {
@@ -80,6 +84,43 @@ ignore() {
 			fi
 
 			echo "$ignore" >> .gitignore
+		fi
+	fi
+}
+
+
+
+clone() {
+	if [ -z $1 ]; then
+		notice "[~] You must enter a repository URL or GitHub project (username/repository).\n"
+	else
+		URL=(${1//:/ })
+		PROTOCOL=${URL[0]}
+
+		if [ "${URL[1]:0:2}" != "//" ]; then
+			URL_FIXED="https://github.com/${URL[@]}.git"
+			PROTOCOL="https"
+		else
+			URL_FIXED="$1"
+		fi
+
+		notice "[~] Cloning from"
+		notice_bold " $URL_FIXED "
+		notice "over"
+		notice_bold " $PROTOCOL"
+		notice "...\n"
+
+		OUTPUT=$((git clone "$URL_FIXED" --quiet) 2>&1)
+		if [ $? -eq 0 ]; then
+			success "\n[✔] Cloned into"
+
+			URL_ARRAY=(${URL_FIXED//\// })
+			URL_LAST_PART=${URL_ARRAY[${#URL_ARRAY[@]} - 1]}
+
+			success_bold " ${URL_LAST_PART%????}.\n"
+		else
+			whoops "\n[✖] Could not clone repository.\n"
+			whoops_subtext "    $OUTPUT\n"
 		fi
 	fi
 }
