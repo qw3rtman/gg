@@ -146,8 +146,21 @@ add() {
 }
 
 commit() {
+	add
+
 	if [ -z $1 ]; then
 		message=$(git diff --name-only --cached)
 		message="Added ${message//$'\n'/, }."
+	else
+		message="$@"
+	fi
+
+	OUTPUT=$(git commit -m "$message")
+	if [ $? -eq 0 ]; then
+		success "[✔] Committed!\n"
+	elif [ $? -eq 1 ]; then
+		notice "[~] Everything already committed.\n"
+	else
+		whoops "[✖] Could not commit changes.\n"
 	fi
 }
