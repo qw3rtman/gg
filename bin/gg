@@ -53,6 +53,10 @@ latest_commit_hash() {
 	git rev-parse --short HEAD
 }
 
+latest_commit_message() {
+	git log -1 --pretty=%B
+}
+
 # Commands.
 
 version() {
