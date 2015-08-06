@@ -5,21 +5,21 @@ VERSION="0.0.1"
 
 # Colors, etc.
 success() {
-	printf "\e[0;32m$@\e[0m"
+	printf "\e[0;32m$1\e[0m"
 }
 
 success_underline() {
-	printf "\e[4;32m$@\e[0m"
+	printf "\e[4;32m$1\e[0m"
 }
 
 notice() {
-	printf "\e[0;33m$@\e[0m"
+	printf "\e[0;33m$1\e[0m"
 }
 
 notice_underline () {
-	printf "\e[4;33m$@\e[0m"
+	printf "\e[4;33m$1\e[0m"
 }
 
 whoops() {
-	printf "\e[1;31m$@\e[0m"
+	printf "\e[1;31m$1\e[0m"
 }
