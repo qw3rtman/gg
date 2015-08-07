@@ -356,7 +356,7 @@ fetch() {
 }
 
 log() {
-	printf "$(git log --pretty=format:"$(printf "\e[2m\e[90m[\e[22m\e[0m")$(success $(current_branch))$(printf "\e[2m\e[90m|\e[22m\e[0m")$(printf "\e[0;33m")%h$(printf "\e[0m")$(printf "\e[2m\e[90m]\e[22m\e[0m \e[90m")%s$(printf "\e[39m")")\n"
+	git log --pretty=format:"$(printf "\e[2m\e[90m[\e[22m\e[0m")$(success $(current_branch))$(printf "\e[2m\e[90m|\e[22m\e[0m")$(printf "\e[0;33m")%h$(printf "\e[0m")$(printf "\e[2m\e[90m]\e[22m\e[0m \e[90m")%s$(printf "\e[39m")"
 }
 
 branch() {
