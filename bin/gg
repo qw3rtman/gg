@@ -226,7 +226,7 @@ push() {
 			if [ $OUTPUT == "Everything up-to-date" ]; then
 				success "[✔] All commits already pushed.\n"
 			else
-				success "[✔] Pushed!"
+				success "[✔] Pushed!\n"
 			fi
 		else
 			whoops "[✖] Could not push commits."
