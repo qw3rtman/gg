@@ -65,6 +65,24 @@ all_branches() {
 	git for-each-ref --format='%(refname:short)' refs/heads/
 }
 
+all_branches_pretty() {
+	branches=$(all_branches)
+
+	branches_array=()
+	while read -r line; do
+		branches_array+=("$line")
+	done <<< "$branches"
+
+	for branch in "${branches_array[@]}"; do
+		if [ "$branch" == "$(current_branch)" ]; then
+			printf "|- "
+			success_bold "$branch\n"
+		else
+			printf "\e[2m|- %s\n\e[22m" "$branch"
+		fi
+	done
+}
+
 current_remote() {
 	remote=$(git rev-parse --abbrev-ref master@{upstream})
 	remote=(${remote//\// })
@@ -344,19 +362,29 @@ branch() {
 		if [ -z "$branches" ]; then
 			notice "[~] No branches exist.\n"
 		else
-			branches_array=()
-			while read -r line; do
-				branches_array+=("$line")
-			done <<< "$branches"
+			all_branches_pretty
+		fi
+	else
+		branch="$1"
 
-			for branch in "${branches_array[@]}"; do
-				if [ "$branch" == "$(current_branch)" ]; then
-					printf "|- "
-					success_bold "$branch\n"
-				else
-					printf "\e[2m|- $branch\n\e[22m"
-				fi
-			done
+		OUTPUT=$((git branch "$branch") 2>&1)
+		if [ $? -eq 0 ]; then
+			success "[✔] Created new branch"
+			success_bold " $branch "
+			success "!\n\n"
+
+			all_branches_pretty
+		else
+			if [ "${OUTPUT: -15}" == "already exists." ]; then
+				notice "[~] Branch"
+				notice_bold " $branch "
+				notice "already exists.\n\n"
+
+				all_branches_pretty
+			else
+				whoops "[✖] Could not create new branch $branch.\n"
+				whoops_subtext "    $OUTPUT\n"
+			fi
 		fi
 	fi
 }
