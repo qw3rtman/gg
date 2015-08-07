@@ -399,13 +399,13 @@ checkout() {
 		if [ $? -eq 0 ]; then
 			OUTPUT=($OUTPUT)
 			if [ "${OUTPUT[0]}" == "Switched" ]; then
-				success "[~] Switched to branch"
+				success "[✔] Switched to branch"
 				success_bold " $branch"
 				success "!\n\n"
 
 				all_branches_pretty
 			elif [ "${OUTPUT[0]}" == "Already" ]; then
-				success "[~] Already on branch"
+				success "[✔] Already on branch"
 				success_bold " $branch"
 				success ".\n\n"
 
