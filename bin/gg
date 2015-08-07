@@ -262,7 +262,7 @@ pull() {
 		notice "...\n\n"
 
 		OUTPUT=$((git fetch --quiet) 2>&1)
-		commits=$(git log --left-right --graph --cherry-pick --oneline master...origin/master)
+		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...origin/$(current_branch))
 
 		OUTPUT=$((git pull) 2>&1)
 		if [ $? -eq 0 ]; then
@@ -301,7 +301,7 @@ fetch() {
 		notice "...\n\n"
 
 		OUTPUT=$((git fetch) 2>&1)
-		commits=$(git log --left-right --graph --cherry-pick --oneline master...origin/master)
+		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...origin/$(current_branch))
 		if [ $? -eq 0 ]; then
 			if [ -z "$OUTPUT" ]; then
 				success "[✔] Everything is already up-to-date.\n"
