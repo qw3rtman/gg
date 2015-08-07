@@ -370,21 +370,56 @@ branch() {
 		OUTPUT=$((git branch "$branch") 2>&1)
 		if [ $? -eq 0 ]; then
 			success "[✔] Created new branch"
-			success_bold " $branch "
-			success "!\n\n"
+			success_bold " $branch"
+			success "!\n"
 
-			all_branches_pretty
+			checkout "$branch"
 		else
 			if [ "${OUTPUT: -15}" == "already exists." ]; then
 				notice "[~] Branch"
 				notice_bold " $branch "
-				notice "already exists.\n\n"
+				notice "already exists.\n"
 
-				all_branches_pretty
+				checkout "$branch"
 			else
 				whoops "[✖] Could not create new branch $branch.\n"
 				whoops_subtext "    $OUTPUT\n"
 			fi
+		fi
+	fi
+}
+
+checkout() {
+	if [ -z $1 ]; then
+		branch
+	else
+		branch="$1"
+
+		OUTPUT=$((git checkout "$branch") 2>&1)
+		if [ $? -eq 0 ]; then
+			OUTPUT=($OUTPUT)
+			if [ "${OUTPUT[0]}" == "Switched" ]; then
+				success "[~] Switched to branch"
+				success_bold " $branch"
+				success "!\n\n"
+
+				all_branches_pretty
+			elif [ "${OUTPUT[0]}" == "Already" ]; then
+				success "[~] Already on branch"
+				success_bold " $branch"
+				success ".\n\n"
+
+				all_branches_pretty
+			fi
+		elif [ $? -eq 1 ]; then
+			notice "[~] Branch"
+			notice_bold " $branch "
+			notice "does not exist.\n\n"
+
+			all_branches_pretty
+		else
+			whoops "[✖] Could not switch to branch $branch.\n"
+			whoops_subtext "    $OUTPUT\n"
 		fi
 	fi
 }
