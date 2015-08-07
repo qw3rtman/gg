@@ -61,6 +61,10 @@ current_branch() {
 	git symbolic-ref --short HEAD
 }
 
+all_branches() {
+	git for-each-ref --format='%(refname:short)' refs/heads/
+}
+
 current_remote() {
 	remote=$(git rev-parse --abbrev-ref master@{upstream})
 	remote=(${remote//\// })
@@ -219,15 +223,15 @@ commitNoAdd() {
 }
 
 push() {
-	if [ -z $(git remote show) ]; then
+	if [ -z "$(git remote show)" ]; then
 		whoops "[✖] No remote to push to.\n"
 	else
 		notice "[~] Pushing"
 		notice_bold " $(current_branch) "
 		notice "branch"
 		notice " to remote"
-		notice_bold " $(current_remote_url)"
-		notice "...\n\n"
+		notice_bold " $(current_remote)"
+		notice " ($(current_remote_url))...\n\n"
 
 		commits=$(git cherry --abbrev -v)
 
@@ -258,15 +262,15 @@ push() {
 }
 
 pull() {
-	if [ -z $(git remote show) ]; then
+	if [ -z "$(git remote show)" ]; then
 		whoops "[✖] No remote to pull from.\n"
 	else
 		notice "[~] Pulling"
 		notice_bold " $(current_branch) "
 		notice "branch"
 		notice " from remote"
-		notice_bold " $(current_remote)/$(current_remote_url)"
-		notice "...\n\n"
+		notice_bold " $(current_remote)"
+		notice " ($(current_remote_url))...\n\n"
 
 		OUTPUT=$((git fetch --quiet) 2>&1)
 		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch))
@@ -297,15 +301,15 @@ pull() {
 }
 
 fetch() {
-	if [ -z $(git remote show) ]; then
+	if [ -z "$(git remote show)" ]; then
 		whoops "[✖] No remote to fetch from.\n"
 	else
 		notice "[~] Fetching"
 		notice_bold " $(current_branch) "
 		notice "branch"
 		notice " from remote"
-		notice_bold " $(current_remote)/$(current_remote_url)"
-		notice "...\n\n"
+		notice_bold " $(current_remote)"
+		notice " ($(current_remote_url))...\n\n"
 
 		OUTPUT=$((git fetch) 2>&1)
 		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch))
@@ -329,6 +333,30 @@ fetch() {
 		else
 			whoops "[✖] Could not fetch commits.\n"
 			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
+branch() {
+	if [ -z $1 ]; then
+		branches=$(all_branches)
+
+		if [ -z "$branches" ]; then
+			notice "[~] No branches exist.\n"
+		else
+			branches_array=()
+			while read -r line; do
+				branches_array+=("$line")
+			done <<< "$branches"
+
+			for branch in "${branches_array[@]}"; do
+				if [ "$branch" == "$(current_branch)" ]; then
+					printf "|- "
+					success_bold "$branch\n"
+				else
+					printf "\e[2m|- $branch\n\e[22m"
+				fi
+			done
 		fi
 	fi
 }
