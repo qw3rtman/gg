@@ -223,7 +223,7 @@ push() {
 
 		OUTPUT=$((git push) 2>&1)
 		if [ $? -eq 0 ]; then
-			if [ $OUTPUT == "Everything up-to-date" ]; then
+			if [ "$OUTPUT" == "Everything up-to-date" ]; then
 				success "[✔] All commits already pushed.\n"
 			else
 				success "[✔] Pushed!\n\n"
