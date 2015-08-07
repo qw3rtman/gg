@@ -219,7 +219,7 @@ push() {
 		notice "branch"
 		notice " to remote"
 		notice_bold " $(current_remote)"
-		notice "..."
+		notice "...\n\n"
 
 		OUTPUT=$((git push) 2>&1)
 		if [ $? -eq 0 ]; then
