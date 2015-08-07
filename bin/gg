@@ -64,7 +64,7 @@ current_branch() {
 current_remote() {
 	remote=$(git rev-parse --abbrev-ref master@{upstream})
 	remote=(${remote//\// })
-	
+
 	echo ${remote[0]}
 }
 
