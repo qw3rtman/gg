@@ -289,4 +289,39 @@ pull() {
 	fi
 }
 
-pull
+fetch() {
+	if [ -z $(git remote show) ]; then
+		whoops "[✖] No remote to fetch from.\n"
+	else
+		notice "[~] Fetching"
+		notice_bold " $(current_branch) "
+		notice "branch"
+		notice " from remote"
+		notice_bold " $(current_remote)"
+		notice "...\n\n"
+
+		OUTPUT=$((git fetch) 2>&1)
+		commits=$(git log --left-right --graph --cherry-pick --oneline master...origin/master)
+		if [ $? -eq 0 ]; then
+			if [ -z "$OUTPUT" ]; then
+				success "[✔] Everything is already up-to-date.\n"
+			else
+				success "[✔] Fetched!\n\n"
+
+				commits_array=()
+				while read -r line; do
+					commits_array+=("$line")
+				done <<< "$commits"
+
+				for commit in "${commits_array[@]}"; do
+					commit_fixed=($commit)
+
+					printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+				done
+			fi
+		else
+			whoops "[✖] Could not fetch commits.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
