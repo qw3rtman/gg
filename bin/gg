@@ -207,6 +207,7 @@ commitNoAdd() {
 		notice "[~] Everything already committed.\n"
 	else
 		whoops "[✖] Could not commit changes.\n"
+		whoops_subtext "    $OUTPUT\n"
 	fi
 }
 
@@ -244,6 +245,7 @@ push() {
 			fi
 		else
 			whoops "[✖] Could not push commits.\n"
+			whoops_subtext "    $OUTPUT\n"
 		fi
 	fi
 }
@@ -282,6 +284,7 @@ pull() {
 			fi
 		else
 			whoops "[✖] Could not pull commits.\n"
+			whoops_subtext "    $OUTPUT\n"
 		fi
 	fi
 }
