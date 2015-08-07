@@ -62,6 +62,12 @@ current_branch() {
 }
 
 current_remote() {
+	remote=$(git rev-parse --abbrev-ref master@{upstream})
+	remote=(${remote//\// })
+	echo ${remote[0]}
+}
+
+current_remote_url() {
 	git config --get remote.origin.url
 }
 
@@ -219,7 +225,7 @@ push() {
 		notice_bold " $(current_branch) "
 		notice "branch"
 		notice " to remote"
-		notice_bold " $(current_remote)"
+		notice_bold " $(current_remote_url)"
 		notice "...\n\n"
 
 		commits=$(git cherry --abbrev -v)
@@ -258,11 +264,11 @@ pull() {
 		notice_bold " $(current_branch) "
 		notice "branch"
 		notice " from remote"
-		notice_bold " $(current_remote)"
+		notice_bold " $(current_remote)/$(current_remote_url)"
 		notice "...\n\n"
 
 		OUTPUT=$((git fetch --quiet) 2>&1)
-		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...origin/$(current_branch))
+		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch))
 
 		OUTPUT=$((git pull) 2>&1)
 		if [ $? -eq 0 ]; then
@@ -297,11 +303,11 @@ fetch() {
 		notice_bold " $(current_branch) "
 		notice "branch"
 		notice " from remote"
-		notice_bold " $(current_remote)"
+		notice_bold " $(current_remote)/$(current_remote_url)"
 		notice "...\n\n"
 
 		OUTPUT=$((git fetch) 2>&1)
-		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...origin/$(current_branch))
+		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch))
 		if [ $? -eq 0 ]; then
 			if [ -z "$OUTPUT" ]; then
 				success "[✔] Everything is already up-to-date.\n"
