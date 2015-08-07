@@ -221,6 +221,8 @@ push() {
 		notice_bold " $(current_remote)"
 		notice "...\n\n"
 
+		commits=$(git cherry --abbrev -v)
+
 		OUTPUT=$((git push) 2>&1)
 		if [ $? -eq 0 ]; then
 			if [ "$OUTPUT" == "Everything up-to-date" ]; then
@@ -228,7 +230,6 @@ push() {
 			else
 				success "[✔] Pushed!\n\n"
 
-				commits=$(git cherry --abbrev -v)
 				commits_array=()
 				while read -r line; do
 					commits_array+=("$line")
