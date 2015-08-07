@@ -64,11 +64,12 @@ current_branch() {
 current_remote() {
 	remote=$(git rev-parse --abbrev-ref master@{upstream})
 	remote=(${remote//\// })
+	
 	echo ${remote[0]}
 }
 
 current_remote_url() {
-	git config --get remote.origin.url
+	git config --get remote.$(current_remote).url
 }
 
 # Commands.
