@@ -84,7 +84,7 @@ all_branches_pretty() {
 }
 
 current_remote() {
-	remote=$(git rev-parse --abbrev-ref master@{upstream})
+	remote=$(git rev-parse --abbrev-ref $(current_branch)@{upstream})
 	remote=(${remote//\// })
 
 	echo ${remote[0]}
