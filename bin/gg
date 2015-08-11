@@ -457,8 +457,7 @@ checkout() {
 				success_bold " $branch"
 				success ".\n\n"
 
-				all_branchs
-				es_pretty
+				all_branches_pretty
 			fi
 		elif [ $? -eq 1 ]; then
 			notice "[~] Branch"
