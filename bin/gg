@@ -383,8 +383,6 @@ status() {
 	    display_active "position" "$(whoops "diverged from remote") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
 	fi
 
-	echo
-
 	git diff-index --quiet --cached HEAD
 	if [ $? -eq 0 ]; then
 		display_active "staging " "$(notice "not all changes staged (add changes)")"
