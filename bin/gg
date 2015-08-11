@@ -551,7 +551,7 @@ info() {
 
 		echo
 
-		success_bold "branches\n"
+		printf "\e[2mbranches (contain $hash):\e[22\n"
 
 		branches=$(git branch --contains $hash)
 
@@ -569,5 +569,3 @@ info() {
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
-
-status
