@@ -374,13 +374,13 @@ status() {
 	fi
 
 	if [ $LOCAL = $REMOTE ]; then
-	    display "position" "up-to-date"
+	    display "position" "up-to-date with remote"
 	elif [ $LOCAL = $BASE ]; then
-	    display_active "position" "$(notice "$behind commits behind (pull)")"
+	    display_active "position" "$(notice "$behind commits behind remote (pull)")"
 	elif [ $REMOTE = $BASE ]; then
-		display_active "position" "$(notice "$ahead commits ahead (push)")"
+		display_active "position" "$(notice "$ahead commits ahead of remote (push)")"
 	else
-	    display_active "position" "$(whoops "diverged") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
+	    display_active "position" "$(whoops "diverged from remote") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
 	fi
 
 	echo
