@@ -380,7 +380,7 @@ status() {
 	elif [ $REMOTE = $BASE ]; then
 		display_active "position" "$(notice "$ahead commits ahead (push)")"
 	else
-	    display_active "position" "$(whoops "diverged")"
+	    display_active "position" "$(whoops "diverged") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
 	fi
 
 	git diff-index --quiet --cached HEAD
