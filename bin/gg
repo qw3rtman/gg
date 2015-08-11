@@ -103,6 +103,26 @@ all_commits_to_push_pretty() {
 	done
 }
 
+all_commits_to_pull() {
+	git fetch --quiet
+	git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch)
+}
+
+all_commits_to_pull_pretty() {
+	commits=$(all_commits_to_pull)
+
+	commits_array=()
+	while read -r line; do
+		commits_array+=("$line")
+	done <<< "$commits"
+
+	for commit in "${commits_array[@]}"; do
+		commit_fixed=($commit)
+
+		printf " \e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+	done
+}
+
 current_remote() {
 	remote=$(git rev-parse --abbrev-ref $(current_branch)@{upstream})
 	remote=(${remote//\// })
@@ -391,6 +411,9 @@ status() {
 
 		ahead=${position[0]}
 		behind=${position[1]}
+
+		push=0
+		pull=0
 	fi
 
 	if [ $LOCAL = $REMOTE ]; then
@@ -429,6 +452,15 @@ status() {
 		printf "\e[2mcommits ahead (to push):\e[22m\n"
 
 		all_commits_to_push_pretty
+	fi
+
+	if [ $pull -eq 1 ]; then
+		echo
+		echo
+
+		printf "\e[2mcommits behind (to pull):\e[22m\n"
+
+		all_commits_to_pull_pretty
 	fi
 }
 
