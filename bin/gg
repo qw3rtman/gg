@@ -357,7 +357,7 @@ fetch() {
 
 status() {
 	branch=$(current_branch)
-	display "branch" "$branch"
+	display "branch  " "$branch"
 
 	git fetch
 
@@ -385,17 +385,17 @@ status() {
 
 	git diff-index --quiet --cached HEAD
 	if [ $? -eq 0 ]; then
-		display_active "staging" "$(notice "not all changes staged (add changes)")"
+		display_active "staging " "$(notice "not all changes staged (add changes)")"
 	else
-		display "staging" "all changes staged"
+		display "staging " "all changes staged"
 	fi
 
 	git update-index -q --refresh
 	git diff-index --quiet --cached HEAD
 	if [ $? -eq 0 ]; then
-		display "commits" "all changes committed"
+		display "commits " "all changes committed"
 	else
-		display_active "commits" "$(notice "not all changes committed (commit changes)")"
+		display_active "commits " "$(notice "not all changes committed (commit changes)")"
 	fi
 }
 
