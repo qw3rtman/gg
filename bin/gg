@@ -355,8 +355,9 @@ fetch() {
 }
 
 status() {
-	branch=$(current_branch)
-	display "branch  " "$branch"
+	printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice $(latest_commit_hash))\e[2m\e[90m]\e[22m\e[0m \e[90m$(latest_commit_message)\e[39m\n"
+
+	echo
 
 	git fetch
 
