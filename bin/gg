@@ -472,3 +472,22 @@ checkout() {
 		fi
 	fi
 }
+
+info() {
+	hash="$1"
+
+	# http://stackoverflow.com/a/18516021
+	OUTPUT=$((git cat-file -t $hash) 2>&1)
+	if [ $? -eq 0 ]; then
+		hash=$(git rev-parse --short $hash)
+		commit_message=$(git log -n 1 --pretty=format:"%s" $hash)
+		ago=$(git log -n 1 --pretty=format:"%cr" $hash)
+
+		printf "\e[2m\e[90m[\e[22m\e[0m$(success "$ago")\e[2m\e[90m|\e[22m\e[0m$(notice "$hash")\e[2m\e[90m]\e[22m\e[0m \e[90m$commit_message\e[39m\n"
+	else
+		whoops "[✖] Object $hash does not exist.\n"
+		whoops_subtext "    $OUTPUT\n"
+	fi
+}
+
+info $1
