@@ -83,6 +83,26 @@ all_branches_pretty() {
 	done
 }
 
+all_commits_to_push() {
+	git cherry --abbrev -v
+}
+
+all_commits_to_push_pretty() {
+	commits=$(all_commits_to_push)
+
+	commits_array=()
+	while read -r line; do
+		commits_array+=("$line")
+	done <<< "$commits"
+
+	for ((i=${#commits_array[@]} - 1; i >= 0; i--)); do
+		commit=${commits_array[i]}
+		commit_fixed=($commit)
+
+		printf " \e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+	done
+}
+
 current_remote() {
 	remote=$(git rev-parse --abbrev-ref $(current_branch)@{upstream})
 	remote=(${remote//\// })
@@ -377,10 +397,14 @@ status() {
 	    display "position" "up-to-date with remote"
 	elif [ $LOCAL = $BASE ]; then
 	    display_active "position" "$(notice "$behind commits behind remote (pull)")"
+		pull=1
 	elif [ $REMOTE = $BASE ]; then
 		display_active "position" "$(notice "$ahead commits ahead of remote (push)")"
+		push=1
 	else
 	    display_active "position" "$(whoops "diverged from remote") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
+		pull=1
+		push=1
 	fi
 
 	git diff --exit-code --quiet
@@ -396,6 +420,15 @@ status() {
 		display "commits " "all changes committed"
 	else
 		display_active "commits " "$(notice "not all changes committed (commit changes)")"
+	fi
+
+	if [ $push -eq 1 ]; then
+		echo
+		echo
+
+		printf "\e[2mcommits ahead (to push):\e[22m\n"
+
+		all_commits_to_push_pretty
 	fi
 }
 
@@ -483,8 +516,26 @@ info() {
 		ago=$(git log -n 1 --pretty=format:"%cr" $hash)
 
 		printf "\e[2m\e[90m[\e[22m\e[0m$(success "$ago")\e[2m\e[90m|\e[22m\e[0m$(notice "$hash")\e[2m\e[90m]\e[22m\e[0m \e[90m$commit_message\e[39m\n"
+
+		echo
+
+		success_bold "branches\n"
+
+		branches=$(git branch --contains $hash)
+
+		branches_array=()
+		while read -r line; do
+			branches_array+=("$line")
+		done <<< "$branches"
+
+		for branch in "${branches_array[@]}"; do
+			printf "\e[2m |- \e[22m"
+			success "${branch//* }\n"
+		done
 	else
 		whoops "[✖] Object $hash does not exist.\n"
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
+
+status
