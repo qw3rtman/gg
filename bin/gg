@@ -472,5 +472,3 @@ checkout() {
 		fi
 	fi
 }
-
-status
