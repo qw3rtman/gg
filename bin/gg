@@ -360,8 +360,28 @@ status() {
 	display "branch" "$branch"
 
 	git fetch
-	position=$(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch))
-	display "position" "$position"
+
+	# http://stackoverflow.com/a/3278427
+	LOCAL=$(git rev-parse @{0})
+	REMOTE=$(git rev-parse @{u})
+	BASE=$(git merge-base @{0} @{u})
+
+	if [ $LOCAL != $REMOTE ]; then
+		position=($(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch)))
+
+		ahead=${position[0]}
+		behind=${position[1]}
+	fi
+
+	if [ $LOCAL = $REMOTE ]; then
+	    display "position" "up-to-date"
+	elif [ $LOCAL = $BASE ]; then
+	    display_active "position" "$(notice "$behind commits behind (pull)")"
+	elif [ $REMOTE = $BASE ]; then
+		display_active "position" "$(notice "$ahead commits ahead (push)")"
+	else
+	    display_active "position" "$(whoops "diverged")"
+	fi
 
 	git diff-index --quiet --cached HEAD
 	if [ $? -eq 0 ]; then
