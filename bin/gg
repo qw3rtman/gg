@@ -604,6 +604,7 @@ info() {
 	fi
 }
 
+# https://github.com/tj/n/blob/master/bin/n
 display_help() {
 	cat <<-EOF
 
