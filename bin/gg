@@ -569,6 +569,22 @@ info() {
 
 		echo
 
+		printf "\e[2mfiles modified:\e[22\n"
+
+		files=$(git diff-tree --no-commit-id --name-only -r $hash)
+
+		files_array=()
+		while read -r line; do
+			files_array+=("$line")
+		done <<< "$files"
+
+		for file in "${files_array[@]}"; do
+			printf "\e[2m |- \e[22m"
+			success "$file\n"
+		done
+
+		echo
+
 		printf "\e[2mbranches (contain $hash):\e[22\n"
 
 		branches=$(git branch --contains $hash)
