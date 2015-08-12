@@ -551,6 +551,13 @@ info() {
 
 		printf "\e[2m\e[90m[\e[22m\e[0m$(success "$ago")\e[2m\e[90m|\e[22m\e[0m$(notice "$hash")\e[2m\e[90m]\e[22m\e[0m \e[90m$commit_message\e[39m\n"
 
+		body="$(git log -n 1 --date=local --pretty=format:"%b" $hash)"
+		if [ ! -z "$body" ]; then
+			echo
+
+			printf "\e[90m\t${body//$'\n'/$'\n\t'}\e[39m\n"
+		fi
+
 		echo
 
 		display "hash     " "$(git log -n 1 --pretty=format:"%H" $hash)"
@@ -580,3 +587,5 @@ info() {
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
+
+info $1
