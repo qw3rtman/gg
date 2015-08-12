@@ -623,6 +623,7 @@ display_help() {
 	gg p                            Push all commits to remote
 	gg pl                           Pull all commits from remote
 	gg f                            Fetch all commits from remote
+	gg s                            Display repository status
 
   Options:
     -V, --version   Output current version of Git Goodies
