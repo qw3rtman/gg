@@ -605,35 +605,35 @@ info() {
 }
 
 display_help() {
-  echo "  $(version)"
-
   cat <<-EOF
-  Usage: gg [options] [COMMAND] [args]
+  
+  $(printf "\e[2musage:\e[22m")
+   $(success "gg") $(notice "[options] [COMMAND] [args]")
 
-  Commands:
-    gg                              Display this help information
-    gg i                            Initialize new Git repository
-    gg ig                           List available .gitignore templates
-    gg ig <template>                Add .gitignore file from <template>
-    gg cl <url>                     Clone repository from <url>
-    gg a                            Add all files
-    gg a <file ...>                 Add all <file>(s)
-    gg c <message>                  Add all files and commit with <message>
-    gg cn <message>                 Commit with <message>
-    gg p                            Push all commits to remote
-    gg pl                           Pull all commits from remote
-    gg f                            Fetch all commits from remote
-    gg s                            Display repository status
-    gg l                            Display repository commit log
-    gg b                            List all branches in repository
-    gg b <branch>                   Create and checkout <branch>
-    gg ch                           List all branches in repository
-    gg ch <branch>                  Checkout <branch>
-    gg in <hash>                    Display info about <hash>
+  $(printf "\e[2moptions:\e[22m")
+   $(success "gg")                              $(notice "Display this help information")
+   $(success "gg i")                            $(notice "Initialize new Git repository")
+   $(success "gg ig")                           $(notice "List available .gitignore templates")
+   $(success "gg ig <template>")                $(notice "Add .gitignore file from <template>")
+   $(success "gg cl <url>")                     $(notice "Clone repository from <url>")
+   $(success "gg a")                            $(notice "Add all files")
+   $(success "gg a <file ...>")                 $(notice "Add all <file>(s)")
+   $(success "gg c <message>")                  $(notice "Add all files and commit with <message>")
+   $(success "gg cn <message>")                 $(notice "Commit with <message>")
+   $(success "gg p")                            $(notice "Push all commits to remote")
+   $(success "gg pl")                           $(notice "Pull all commits from remote")
+   $(success "gg f")                            $(notice "Fetch all commits from remote")
+   $(success "gg s")                            $(notice "Display repository status")
+   $(success "gg l")                            $(notice "Display repository commit log")
+   $(success "gg b")                            $(notice "List all branches in repository")
+   $(success "gg b <branch>")                   $(notice "Create and checkout <branch>")
+   $(success "gg ch")                           $(notice "List all branches in repository")
+   $(success "gg ch <branch>")                  $(notice "Checkout <branch>")
+   $(success "gg in <hash>")                    $(notice "Display info about <hash>")
 
-  Options:
-    -V, --version   Output current version of Git Goodies
-    -h, --help      Display this help information
+  $(printf "\e[2moptions:\e[22m")
+   $(success "-V, --version")                  $(notice "Output current version of Git Goodies")
+   $(success "-h, --help")                     $(notice "Display this help information")
 
 EOF
   exit 0
