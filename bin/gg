@@ -617,6 +617,7 @@ display_help() {
 	gg ig <template>                Add .gitignore file from <template>
 	gg cl <url>                     Clone repository from <url>
 	gg a                            Add all files
+	gg a <file ...>                 Add all <file>(s)
 
   Options:
     -V, --version   Output current version of Git Goodies
