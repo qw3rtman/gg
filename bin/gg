@@ -612,24 +612,24 @@ display_help() {
 
   Commands:
     gg                              Display this help information
-	gg i                            Initialize new Git repository
-	gg ig                           List available .gitignore templates
-	gg ig <template>                Add .gitignore file from <template>
-	gg cl <url>                     Clone repository from <url>
-	gg a                            Add all files
-	gg a <file ...>                 Add all <file>(s)
-	gg c <message>                  Add all files and commit with <message>
-	gg cn <message>                 Commit with <message>
-	gg p                            Push all commits to remote
-	gg pl                           Pull all commits from remote
-	gg f                            Fetch all commits from remote
-	gg s                            Display repository status
-	gg l                            Display repository commit log
-	gg b                            List all branches in repository
-	gg b <branch>                   Create and checkout <branch>
-	gg ch                           List all branches in repository
-	gg ch <branch>                  Checkout <branch>
-	gg in <hash>                    Display info about <hash>
+    gg i                            Initialize new Git repository
+    gg ig                           List available .gitignore templates
+    gg ig <template>                Add .gitignore file from <template>
+    gg cl <url>                     Clone repository from <url>
+    gg a                            Add all files
+    gg a <file ...>                 Add all <file>(s)
+    gg c <message>                  Add all files and commit with <message>
+    gg cn <message>                 Commit with <message>
+    gg p                            Push all commits to remote
+    gg pl                           Pull all commits from remote
+    gg f                            Fetch all commits from remote
+    gg s                            Display repository status
+    gg l                            Display repository commit log
+    gg b                            List all branches in repository
+    gg b <branch>                   Create and checkout <branch>
+    gg ch                           List all branches in repository
+    gg ch <branch>                  Checkout <branch>
+    gg in <hash>                    Display info about <hash>
 
   Options:
     -V, --version   Output current version of Git Goodies
