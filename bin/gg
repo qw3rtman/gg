@@ -451,8 +451,11 @@ status() {
 		display_active "commits " "$(notice "not all changes committed (commit changes)")"
 	fi
 
-	if [ $push -eq 1 ]; then
+	if [ $push -eq 1 ] | [ $pull -eq 1 ]; then
 		echo
+	fi
+
+	if [ $push -eq 1 ]; then
 		echo
 
 		printf "\e[2mcommits ahead (to push):\e[22m\n"
@@ -461,7 +464,6 @@ status() {
 	fi
 
 	if [ $pull -eq 1 ]; then
-		echo
 		echo
 
 		printf "\e[2mcommits behind (to pull):\e[22m\n"
