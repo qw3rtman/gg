@@ -408,14 +408,14 @@ status() {
 	REMOTE=$(git rev-parse @{u})
 	BASE=$(git merge-base @{0} @{u})
 
+	push=0
+	pull=0
+
 	if [ $LOCAL != $REMOTE ]; then
 		position=($(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch)))
 
 		ahead=${position[0]}
 		behind=${position[1]}
-
-		push=0
-		pull=0
 	fi
 
 	if [ $LOCAL = $REMOTE ]; then
