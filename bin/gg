@@ -625,6 +625,7 @@ display_help() {
 	gg f                            Fetch all commits from remote
 	gg s                            Display repository status
 	gg l                            Display repository commit log
+	gg b                            List all branches in repository
 
   Options:
     -V, --version   Output current version of Git Goodies
