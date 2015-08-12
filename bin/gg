@@ -614,6 +614,7 @@ display_help() {
     gg                              Display this help information
 	gg i                            Initialize new Git repository
 	gg ig                           List available .gitignore templates
+	gg ig <template>                Add .gitignore file from <template>
 
   Options:
     -V, --version   Output current version of Git Goodies
