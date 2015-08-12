@@ -553,6 +553,10 @@ info() {
 
 		echo
 
+		display "hash" "$(git log -n 1 --pretty=format:"%H" $hash)"
+
+		echo
+
 		printf "\e[2mbranches (contain $hash):\e[22\n"
 
 		branches=$(git branch --contains $hash)
