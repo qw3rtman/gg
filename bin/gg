@@ -613,6 +613,7 @@ display_help() {
   Commands:
     gg                              Display this help information
 	gg i                            Initialize new Git repository
+	gg ig                           List available .gitignore templates
 
   Options:
     -V, --version   Output current version of Git Goodies
