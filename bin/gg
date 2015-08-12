@@ -603,3 +603,22 @@ info() {
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
+
+display_help() {
+  echo "  $(version)"
+
+  cat <<-EOF
+  Usage: gg [options] [COMMAND] [args]
+
+  Commands:
+    gg                              Display this help information
+
+  Options:
+    -V, --version   Output current version of Git Goodies
+    -h, --help      Display this help information
+
+EOF
+  exit 0
+}
+
+display_help
