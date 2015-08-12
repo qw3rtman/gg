@@ -638,5 +638,3 @@ display_help() {
 EOF
   exit 0
 }
-
-display_help
