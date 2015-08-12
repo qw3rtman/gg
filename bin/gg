@@ -605,8 +605,8 @@ info() {
 }
 
 display_help() {
-  cat <<-EOF
-  
+	cat <<-EOF
+
   $(printf "\e[2musage:\e[22m")
    $(success "gg") $(notice "[options] [COMMAND] [args]")
 
@@ -636,7 +636,31 @@ display_help() {
    $(success "-h, --help")                     $(notice "Display this help information")
 
 EOF
-  exit 0
+	exit 0
 }
 
-display_help
+if test $# -eq 0; then
+	display_help
+else
+	while test $# -ne 0; do
+		case $1 in
+			i|init) init ;;
+			ig|ignore) ignore $2; exit ;;
+			cl|clone) clone $2; exit ;;
+			a|add) add $2; exit ;;
+			c|commit) commit "$2"; exit ;;
+			cn) commitNoAdd $@; exit ;;
+			p|push) push ;;
+			pl|pull) pull ;;
+			f|fetch) fetch ;;
+			s|status) status ;;
+			l|log) log ;;
+			b|branch) branch $2 ;;
+			ch|checkout) checkout $2 ;;
+			in|info) info $2 ;;
+			-V|--version) version ;;
+			-h|--help|help) display_help ;;
+		esac
+		shift
+	done
+fi
