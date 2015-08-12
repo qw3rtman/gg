@@ -612,6 +612,7 @@ display_help() {
 
   Commands:
     gg                              Display this help information
+	gg i                            Initialize new Git repository
 
   Options:
     -V, --version   Output current version of Git Goodies
