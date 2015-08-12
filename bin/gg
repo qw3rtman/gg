@@ -37,7 +37,9 @@ whoops() {
 }
 
 whoops_subtext() {
-	printf "\e[0;31m$1\e[0m"
+	subtext=${1//\n/    \n}
+
+	printf "\e[0;31m$subtext\e[0m"
 }
 
 display() {
