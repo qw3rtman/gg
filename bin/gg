@@ -646,6 +646,14 @@ EOF
 	exit 0
 }
 
+unknown_command() {
+	whoops "[✖] Unknown command ("
+	whoops_subtext "$1"
+	whoops ")."
+	whoops_subtext "\n    See all available commands with "
+	whoops "gg --help.\n"
+}
+
 if test $# -eq 0; then
 	display_help
 else
@@ -667,6 +675,7 @@ else
 			in|info) info $2 ;;
 			-V|--version) version ;;
 			-h|--help|help) display_help ;;
+			*) unknown_command "gg $@" ;;
 		esac
 		shift
 	done
