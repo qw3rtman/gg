@@ -569,7 +569,7 @@ info() {
 
 		echo
 
-		printf "\e[2mfiles modified:\e[22\n"
+		printf "\e[2mfiles modified:\e[22m\n"
 
 		files=$(git diff-tree --no-commit-id --name-only -r $hash)
 
@@ -585,7 +585,7 @@ info() {
 
 		echo
 
-		printf "\e[2mbranches:\e[22\n"
+		printf "\e[2mbranches:\e[22m\n"
 
 		branches=$(git branch --contains $hash)
 
@@ -638,3 +638,5 @@ display_help() {
 EOF
   exit 0
 }
+
+display_help
