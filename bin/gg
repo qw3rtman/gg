@@ -622,6 +622,7 @@ display_help() {
 	gg cn <message>                 Commit with <message>
 	gg p                            Push all commits to remote
 	gg pl                           Pull all commits from remote
+	gg f                            Fetch all commits from remote
 
   Options:
     -V, --version   Output current version of Git Goodies
