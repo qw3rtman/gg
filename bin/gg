@@ -610,6 +610,10 @@ info() {
 	fi
 }
 
+undo() {
+	cat /var/log/gg.log
+}
+
 # https://github.com/tj/n/blob/master/bin/n
 display_help() {
 	cat <<-EOF
@@ -673,6 +677,7 @@ else
 			b|branch) branch $2; exit ;;
 			ch|checkout) checkout $2; exit ;;
 			in|info) info $2; exit ;;
+			u|undo) undo $1; exit ;;
 			-V|--version) version ;;
 			-h|--help|help) display_help ;;
 			*) unknown_command "gg $@"; exit 1 ;;
