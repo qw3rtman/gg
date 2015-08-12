@@ -619,6 +619,7 @@ display_help() {
 	gg a                            Add all files
 	gg a <file ...>                 Add all <file>(s)
 	gg c <message>                  Add all files and commit with <message>
+	gg cn <message>                 Commit with <message>
 
   Options:
     -V, --version   Output current version of Git Goodies
