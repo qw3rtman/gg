@@ -641,7 +641,7 @@ display_help() {
    $(success "gg ch")                           $(notice "List all branches in repository")
    $(success "gg ch <branch>")                  $(notice "Checkout <branch>")
    $(success "gg in <hash>")                    $(notice "Display info about <hash>")
-   $(success "gg u <back>")                     $(notice "Unod <back> commands")
+   $(success "gg u <back>")                     $(notice "Undo <back> steps (commands)")
 
   $(printf "\e[2moptions:\e[22m")
    $(success "-V, --version")                  $(notice "Output current version of Git Goodies")
