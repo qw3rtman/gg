@@ -571,5 +571,3 @@ info() {
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
-
-push
