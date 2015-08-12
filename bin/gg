@@ -554,7 +554,8 @@ info() {
 		echo
 
 		display "hash" "$(git log -n 1 --pretty=format:"%H" $hash)"
-		display "author" "$(git log -n 1 --pretty=format:"%aN $(printf "\e[33m")<%aE>$(printf "\e[0m")" $hash)"
+		display "author" "$(git log -n 1 --date=local --pretty=format:"%aN $(printf "\e[33m")<%aE>$(printf "\e[0m") $(printf "\e[32m")%ad$(printf "\e[0m")" $hash)"
+		display "committer" "$(git log -n 1 --pretty=format:"%cN $(printf "\e[33m")<%cE>$(printf "\e[0m")" $hash)"
 
 		echo
 
