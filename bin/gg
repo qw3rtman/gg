@@ -603,5 +603,3 @@ info() {
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
-
-info $1
