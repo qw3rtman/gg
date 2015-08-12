@@ -626,6 +626,7 @@ display_help() {
 	gg s                            Display repository status
 	gg l                            Display repository commit log
 	gg b                            List all branches in repository
+	gg b <branch>                   Create and checkout <branch>
 
   Options:
     -V, --version   Output current version of Git Goodies
