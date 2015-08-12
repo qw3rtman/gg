@@ -585,7 +585,7 @@ info() {
 
 		echo
 
-		printf "\e[2mbranches (contain $hash):\e[22\n"
+		printf "\e[2mbranches:\e[22\n"
 
 		branches=$(git branch --contains $hash)
 
