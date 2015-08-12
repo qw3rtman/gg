@@ -243,7 +243,7 @@ add() {
 commit() {
 	add
 
-	commitNoAdd
+	commitNoAdd "$@"
 }
 
 commitNoAdd() {
@@ -649,8 +649,8 @@ else
 			ig|ignore) ignore $2; exit ;;
 			cl|clone) clone $2; exit ;;
 			a|add) add $2; exit ;;
-			c|commit) commit "$2"; exit ;;
-			cn) commitNoAdd $@; exit ;;
+			c|commit) commit "${@:2}"; exit ;;
+			cn) commitNoAdd ${@:2}; exit ;;
 			p|push) push ;;
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
