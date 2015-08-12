@@ -629,6 +629,7 @@ display_help() {
 	gg b <branch>                   Create and checkout <branch>
 	gg ch                           List all branches in repository
 	gg ch <branch>                  Checkout <branch>
+	gg in <hash>                    Display info about <hash>
 
   Options:
     -V, --version   Output current version of Git Goodies
