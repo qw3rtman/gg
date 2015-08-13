@@ -166,23 +166,31 @@ ignore() {
 	if [ -z $1 ]; then
 		ignore_list
 	else
-		ignore=$(curl --silent "https://www.gitignore.io/api/$1")
-		ignore_array=($ignore)
+		list=0
 
-		if [ ${ignore_array[5]} == "ERROR:" ]; then
-			whoops "[✖] Template $1 does not exist.\n\n"
+		for template in $@; do
+			ignore=$(curl --silent "https://www.gitignore.io/api/$template")
+			ignore_array=($ignore)
 
-			ignore_list
-		else
-			if [[ -s ".gitignore" ]]; then
-				echo -e	 "\n" >> .gitignore
+			if [ ${ignore_array[5]} == "ERROR:" ]; then
+				whoops "[✖] Template $template does not exist.\n"
+
+				list=1
+			else
+				if [[ -s ".gitignore" ]]; then
+					echo -e	 "\n" >> .gitignore
+				fi
+
+				echo "$ignore" >> .gitignore
+
+				success "[✔] Added "
+				success_bold " $template "
+				success "template to .gitignore.\n"
 			fi
+		done
 
-			echo "$ignore" >> .gitignore
-
-			success "[✔] Added "
-			success_bold " $1 "
-			success "template to .gitignore.\n"
+		if [ $list -eq 1 ]; then
+			ignore_list
 		fi
 	fi
 }
@@ -701,7 +709,7 @@ else
 	while test $# -ne 0; do
 		case $1 in
 			i|init) init ;;
-			ig|ignore) ignore $2; exit ;;
+			ig|ignore) ignore "${@:2}"; exit ;;
 			igf|ignorefile) ignore_file "${@:2}"; exit ;;
 			cl|clone) clone $2; exit ;;
 			a|add) add $2; exit ;;
