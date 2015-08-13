@@ -691,7 +691,7 @@ else
 			l|log) log ;;
 			b|branch) branch $2; exit ;;
 			ch|checkout) checkout $2; exit ;;
-			in|info) info $2; exit ;;
+			v|view|in|info) info $2; exit ;;
 			-V|--version) version ;;
 			-h|--help|help) display_help ;;
 			*) unknown_command "gg $@"; exit 1 ;;
