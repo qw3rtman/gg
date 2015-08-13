@@ -187,7 +187,28 @@ ignore() {
 	fi
 }
 
+ignore_file() {
+	if [ -z $1 ]; then
+		notice "[~] You must specify a file to add to .gitignore.\n"
+	else
+		if [[ -s ".gitignore" ]]; then
+			echo >> .gitignore
+		fi
 
+		for file in $@; do
+			if [ -e $file ]; then
+				echo "$file" >> .gitignore
+
+				success "[✔] Added "
+				success_bold " $file "
+				success " to .gitignore.\n"
+			else
+				whoops "[✖] Could not add to $file to .gitignore.\n"
+				whoops_subtext "    $file does not exist.\n"
+			fi
+		done
+	fi
+}
 
 clone() {
 	if [ -z $1 ]; then
@@ -679,6 +700,7 @@ else
 		case $1 in
 			i|init) init ;;
 			ig|ignore) ignore $2; exit ;;
+			igf|ignorefile) ignore_file "${@:2}"; exit ;;
 			cl|clone) clone $2; exit ;;
 			a|add) add $2; exit ;;
 			c|commit) commit "${@:2}"; exit ;;
