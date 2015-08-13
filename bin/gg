@@ -285,6 +285,10 @@ commitNoAdd() {
 	fi
 }
 
+uncommit() {
+	count=${1-1}
+}
+
 push() {
 	if [ -z "$(git remote show)" ]; then
 		whoops "[✖] No remote to push to.\n"
@@ -665,6 +669,7 @@ else
 			a|add) add $2; exit ;;
 			c|commit) commit "${@:2}"; exit ;;
 			cn) commitNoAdd ${@:2}; exit ;;
+			uc|uncommit) uncommit $1; exit ;;
 			p|push) push ;;
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
