@@ -73,10 +73,14 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Initializing repositories
 
+![`gg i`](http://nimitkalra.com/images/gg/init.png)
+
 * `gg i`
 * `gg init`
 
 ### Adding a template to .gitignore
+
+![`gg ig`](http://nimitkalra.com/images/gg/ignore_template.png)
 
 * `gg ig <template>`
 * `gg ignore <template>`
@@ -85,10 +89,14 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Adding a file to .gitignore
 
+![`gg igf`](http://nimitkalra.com/images/gg/ignore_file.png)
+
 * `gg igf <file ...>`
 * `gg ignorefile <file ...>`
 
 ### Cloning a repository
+
+![`gg cl`](http://nimitkalra.com/images/gg/clone.png)
 
 * `gg cl <url>`
 * `gg clone <url>`
@@ -97,15 +105,21 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Adding all files
 
+![`gg a`](http://nimitkalra.com/images/gg/add.png)
+
 * `gg a`
 * `gg add`
 
 ### Adding specific files
 
+![`gg a`](http://nimitkalra.com/images/gg/add_file.png)
+
 * `gg a <file ...>`
 * `gg add <file ...>`
 
 ### Adding all and committing
+
+![`gg c`](http://nimitkalra.com/images/gg/commit.png)
 
 * `gg c <message>`
 * `gg commmit <message>`
@@ -114,11 +128,15 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Committing
 
+![`gg cn`](http://nimitkalra.com/images/gg/commit_no_add.png)
+
 * `gg cn <message>`
 
 *If no <message> is provided, a generic one listing all files modified/added will be generated.*
 
 ### Uncommiting (resetting: `git reset HEAD~count`)
+
+![`gg back`](http://nimitkalra.com/images/gg/uncommiting.png)
 
 * `gg uc <count>`
 * `gg uncommit <count>`
@@ -127,6 +145,8 @@ If you don't feel comfortable executing a random script, [its source is availabl
 *If no <count> is provided, 1 will be used.*
 
 ### Adding all and recommitting (amending: `git commit --amend`)
+
+![`gg am`](http://nimitkalra.com/images/gg/amend.png)
 
 * `gg rc <message>`
 * `gg recommit <message>`
@@ -137,6 +157,8 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Recommitting (amending: `git commit --amend`)
 
+![`gg am`](http://nimitkalra.com/images/gg/amend_no_add.png)
+
 * `gg rcn <message>`
 * `gg amn <message>`
 
@@ -144,43 +166,61 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Pushing
 
+![`gg p`](http://nimitkalra.com/images/gg/push.png)
+
 * `gg p`
 * `gg push`
 
 ### Pulling
+
+![`gg pl`](http://nimitkalra.com/images/gg/pull.png)
 
 * `gg pl`
 * `gg pull`
 
 ### Fetching
 
+![`gg f`](http://nimitkalra.com/images/gg/fetch.png)
+
 * `gg f`
 * `gg fetch`
 
 ### Getting repository status
+
+![`gg s`](http://nimitkalra.com/images/gg/s.png)
 
 * `gg s`
 * `gg status`
 
 ### Displaying commit log
 
+![`gg l`](http://nimitkalra.com/images/gg/log.png)
+
 * `gg l`
 * `gg log`
 
 ### Listing all branches
+
+![`gg b`](http://nimitkalra.com/images/gg/branch.png)
 
 * `gg b`
 * `gg ch`
 
 ### Checking out existing branch
 
+![`gg ch`](http://nimitkalra.com/images/gg/checkout.png)
+
 * `gg ch <branch>`
 
 ### Creating and checking out new branch
 
+![`gg b`](http://nimitkalra.com/images/gg/branch_checkout.png)
+
 * `gg b <branch>`
 
 ### Displaying commit info
+
+![`gg in`](http://nimitkalra.com/images/gg/info.png)
 
 * `gg in <hash>`
 * `gg info <hash>`
@@ -190,10 +230,14 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Displaying **Git Goodies** version
 
+![`gg -V`](http://nimitkalra.com/images/gg/version.png)
+
 * `gg -V`
 * `gg --version`
 
 ### Displaying **Git Goodies** help
+
+![`gg -h`](http://nimitkalra.com/images/gg/help.png)
 
 * `gg`
 * `gg -h`

@@ -260,7 +260,7 @@ add() {
 				success_bold " $file"
 				success "!\n"
 			else
-				whoops "[✖] Could not add to $file to .gitignore.\n"
+				whoops "[✖] Could not add $file.\n"
 				whoops_subtext "    $file does not exist.\n"
 			fi
 		done
