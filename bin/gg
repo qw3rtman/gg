@@ -331,13 +331,42 @@ amend() {
 	else
 		message="$@"
 
-		info HEAD
+		BEFORE_HASH=$(latest_commit_hash)
+		BEFORE_MESSAGE=$(latest_commit_message)
+		BEFORE_INFO=$(info HEAD)
+		printf "\e[2mbefore:\e[22m\n"
+
+		before_info_array=()
+		while read -r line; do
+			before_info_array+=("$line")
+		done <<< "$BEFORE_INFO"
+
+		for before_info_line in "${before_info_array[@]}"; do
+			printf "\t$before_info_line\n"
+		done
+
+		echo
 
 		OUTPUT=$((git commit --amend -m $message) 2>&1)
 		if [ $? -eq 0 ]; then
-			success "[✔] Amended most recent commit!\n\n"
+			AFTER_HASH=$(latest_commit_hash)
+			AFTER_MESSAGE=$(latest_commit_message)
+			AFTER_INFO=$(info HEAD)
+			printf "\e[2mafter:\e[22m\n"
 
-			info HEAD
+			after_info_array=()
+			while read -r line; do
+				after_info_array+=("$line")
+			done <<< "$AFTER_INFO"
+
+			for after_info_line in "${after_info_array[@]}"; do
+				printf "\t$after_info_line\n"
+			done
+
+			printf "\n\e[2msummary:\e[22m\n"
+			printf "\t\e[2m\e[90m[\e[22m\e[0m\e[22m\e[0m$(printf "\e[2m\e[33m$BEFORE_HASH\e[0m\e[22m") \e[90m->\e[39m $(notice $AFTER_HASH)\e[2m\e[90m]\e[22m\e[0m \e[2m\e[90m$BEFORE_MESSAGE\e[22m \e[90m->\e[39m \e[90m$AFTER_MESSAGE\e[39m\n"
+
+			success "\n[✔] Amended most recent commit!\n"
 		else
 			whoops "[✖] Could not amend most recent commit.\n"
 			whoops_subtext "    $OUTPUT\n"
