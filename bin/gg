@@ -270,10 +270,10 @@ add() {
 commit() {
 	add
 
-	commitNoAdd "$@"
+	commit_no_add "$@"
 }
 
-commitNoAdd() {
+commit_no_add() {
 	if [ -z $1 ]; then
 		message=$(git diff --name-only --cached)
 		message="Added ${message//$'\n'/, }."
@@ -771,7 +771,7 @@ else
 			cl|clone) clone $2; exit ;;
 			a|add) add $2; exit ;;
 			c|commit) commit "${@:2}"; exit ;;
-			cn) commitNoAdd "${@:2}"; exit ;;
+			cn) commit_no_add "${@:2}"; exit ;;
 			uc|uncommit) uncommit $2; exit ;;
 			am|amend|rc|recommit) amend "${@:2}"; exit ;;
 			amn|rcn) amend_no_add "${@:2}"; exit ;;
