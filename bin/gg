@@ -183,7 +183,7 @@ ignore() {
 
 				echo "$ignore" >> .gitignore
 
-				success "[✔] Added "
+				success "[✔] Added"
 				success_bold " $template "
 				success "template to .gitignore.\n"
 			fi
