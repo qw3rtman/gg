@@ -326,6 +326,12 @@ uncommit() {
 }
 
 amend() {
+	add
+
+	amendNoAdd "$@"
+}
+
+amendNoAdd() {
 	if [ -z $1 ] || [ "$1" == "\n" ]; then
 		message_specified=0
 	else
@@ -766,6 +772,7 @@ else
 			cn) commitNoAdd ${@:2}; exit ;;
 			uc|uncommit) uncommit $2; exit ;;
 			am|amend|rc|recommit) amend "${@:2}"; exit ;;
+			amn|amendNoAdd|rcn|recommitNoAdd) amendNoAdd "${@:2}"; exit ;;
 			p|push) push ;;
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
