@@ -644,6 +644,7 @@ display_help() {
    $(success "gg a <file ...>")                 $(notice "Add all <file>(s)")
    $(success "gg c <message>")                  $(notice "Add all files and commit with <message>")
    $(success "gg cn <message>")                 $(notice "Commit with <message>")
+   $(success "gg uc <count>")                   $(notice "Go back <count> commits")
    $(success "gg p")                            $(notice "Push all commits to remote")
    $(success "gg pl")                           $(notice "Pull all commits from remote")
    $(success "gg f")                            $(notice "Fetch all commits from remote")
