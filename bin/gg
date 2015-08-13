@@ -328,6 +328,8 @@ uncommit() {
 amend() {
 	add
 
+	echo
+
 	amend_no_add "$@"
 }
 
