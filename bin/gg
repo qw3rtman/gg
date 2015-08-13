@@ -660,6 +660,7 @@ display_help() {
    $(success "gg i")                            $(notice "Initialize new Git repository")
    $(success "gg ig")                           $(notice "List available .gitignore templates")
    $(success "gg ig <template>")                $(notice "Add .gitignore file from <template>")
+   $(success "gg igf <file ...>")               $(notice "Add all <file>(s) to .gitignore")
    $(success "gg cl <url>")                     $(notice "Clone repository from <url>")
    $(success "gg a")                            $(notice "Add all files")
    $(success "gg a <file ...>")                 $(notice "Add all <file>(s)")
