@@ -721,7 +721,7 @@ display_help() {
   $(printf "\e[2musage:\e[22m")
    $(success "gg") $(notice "[options] [COMMAND] [args]")
 
-  $(printf "\e[2moptions:\e[22m")
+  $(printf "\e[2mcommands:\e[22m")
    $(success "gg")                              $(notice "Display this help information")
    $(success "gg i")                            $(notice "Initialize new Git repository")
    $(success "gg ig")                           $(notice "List available .gitignore templates")
