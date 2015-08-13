@@ -320,7 +320,7 @@ uncommit() {
 
 		printf "$INFO"
 	else
-		whoops "[✖] Could uncommit.\n"
+		whoops "[✖] Could not uncommit.\n"
 		whoops_subtext "    $OUTPUT\n"
 	fi
 }
