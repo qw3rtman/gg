@@ -747,8 +747,8 @@ display_help() {
    $(success "gg in <hash>")                    $(notice "Display info about <hash>")
 
   $(printf "\e[2moptions:\e[22m")
-   $(success "-V, --version")                  $(notice "Output current version of Git Goodies")
-   $(success "-h, --help")                     $(notice "Display this help information")
+   $(success "-V, --version")                   $(notice "Output current version of Git Goodies")
+   $(success "-h, --help")                      $(notice "Display this help information")
 
 EOF
 	exit 0
