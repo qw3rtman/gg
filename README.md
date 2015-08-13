@@ -243,3 +243,11 @@ If you don't feel comfortable executing a random script, [its source is availabl
 * `gg -h`
 * `gg --help`
 * `gg help`
+
+## Contributing
+
+Contributions are always welcome, from a typo in the README to an enhancement of a feature to a completely new feature itself.
+
+Avoid [code smells](http://blog.codinghorror.com/code-smells/), [create reusable code](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself), and follow the loosely-modeled coding standard found in the current code.
+
+Fork the code, make a new branch, and send in a pull request.
