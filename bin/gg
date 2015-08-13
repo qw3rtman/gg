@@ -650,7 +650,11 @@ checkout() {
 }
 
 info() {
-	hash="$1"
+	if [ -z $1 ]; then
+		hash="HEAD"
+	else
+		hash="$1"
+	fi
 
 	# http://stackoverflow.com/a/18516021
 	OUTPUT=$((git cat-file -t $hash) 2>&1)
