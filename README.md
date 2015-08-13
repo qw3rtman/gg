@@ -1,3 +1,5 @@
+# This *Node.js version of `gg`* is no longer maintained and is [full of bugs](https://github.com/qw3rtman/gg/issues). [As a result, I have rewritten `gg` from scratch in Shell (Bash, zsh, etc.) and added in some new features, which can be found here.](https://github.com/qw3rtman/gg)
+
 `gg`
 ====
 [![Build Status](https://travis-ci.org/qw3rtman/gg.svg?branch=master)](https://travis-ci.org/qw3rtman/gg)&nbsp;
