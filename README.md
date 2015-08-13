@@ -136,7 +136,7 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Uncommiting (resetting: `git reset HEAD~count`)
 
-![`gg back`](http://nimitkalra.com/images/gg/uncommiting.png)
+![`gg back`](http://nimitkalra.com/images/gg/uncommit.png)
 
 * `gg uc <count>`
 * `gg uncommit <count>`
@@ -187,7 +187,7 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Getting repository status
 
-![`gg s`](http://nimitkalra.com/images/gg/s.png)
+![`gg s`](http://nimitkalra.com/images/gg/status.png)
 
 * `gg s`
 * `gg status`
