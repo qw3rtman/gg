@@ -287,6 +287,19 @@ commitNoAdd() {
 
 uncommit() {
 	count=${1-1}
+	current=$(($count-1))
+
+	INFO=$(info HEAD~$current)
+
+	OUTPUT=$((git reset HEAD~$count) 2>&1)
+	if [ $? -eq 0 ]; then
+		success "[✔] Uncommited!\n\n"
+
+		printf "$INFO"
+	else
+		whoops "[✖] Could uncommit.\n"
+		whoops_subtext "    $OUTPUT\n"
+	fi
 }
 
 push() {
