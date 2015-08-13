@@ -325,6 +325,26 @@ uncommit() {
 	fi
 }
 
+amend() {
+	if [ -z $1 ]; then
+		notice "[~] You must specify the new commit message.\n"
+	else
+		message="$@"
+
+		info HEAD
+
+		OUTPUT=$((git commit --amend -m $message) 2>&1)
+		if [ $? -eq 0 ]; then
+			success "[✔] Amended most recent commit!\n\n"
+
+			info HEAD
+		else
+			whoops "[✖] Could not amend most recent commit.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
 push() {
 	if [ -z "$(git remote show)" ]; then
 		whoops "[✖] No remote to push to.\n"
@@ -709,6 +729,7 @@ else
 			c|commit) commit "${@:2}"; exit ;;
 			cn) commitNoAdd ${@:2}; exit ;;
 			uc|uncommit) uncommit $2; exit ;;
+			am|amend) amend "${@:2}"; exit ;;
 			p|push) push ;;
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
