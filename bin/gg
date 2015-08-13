@@ -758,7 +758,7 @@ else
 			c|commit) commit "${@:2}"; exit ;;
 			cn) commitNoAdd ${@:2}; exit ;;
 			uc|uncommit) uncommit $2; exit ;;
-			am|amend) amend "${@:2}"; exit ;;
+			am|amend|rc|recommit) amend "${@:2}"; exit ;;
 			p|push) push ;;
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
