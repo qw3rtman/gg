@@ -166,17 +166,13 @@ ignore() {
 	if [ -z $1 ]; then
 		ignore_list
 	else
-		list=0
-
 		for template in $@; do
 			ignore=$(curl --silent "https://www.gitignore.io/api/$template")
 			ignore_array=($ignore)
 
 			if [ ${ignore_array[5]} == "ERROR:" ]; then
 				whoops "[✖] Template $template does not exist.\n"
-				whoops_subtext "    You must enter one of the templates or languages listed below.\n"
-
-				list=1
+				whoops_subtext "    You must enter one of the templates or languages listed with $(notice "gg ig").\n"
 			else
 				if [[ -s ".gitignore" ]]; then
 					echo -e	 "\n" >> .gitignore
@@ -189,18 +185,6 @@ ignore() {
 				success "template to .gitignore.\n"
 			fi
 		done
-
-		if [ $list -eq 1 ]; then
-			echo
-
-			# Modified ignore_list to exclude notice at end.
-			list=$(curl --silent "https://www.gitignore.io/api/list")
-			list=(${list//,/ })
-
-			for ignore in "${list[@]}"; do
-				normal "|- $ignore\n"
-			done
-		fi
 	fi
 }
 
