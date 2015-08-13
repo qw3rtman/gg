@@ -174,6 +174,7 @@ ignore() {
 
 			if [ ${ignore_array[5]} == "ERROR:" ]; then
 				whoops "[✖] Template $template does not exist.\n"
+				whoops_subtext "    You must enter one of the templates or languages listed below.\n"
 
 				list=1
 			else
@@ -190,7 +191,15 @@ ignore() {
 		done
 
 		if [ $list -eq 1 ]; then
-			ignore_list
+			echo
+
+			# Modified ignore_list to exclude notice at end.
+			list=$(curl --silent "https://www.gitignore.io/api/list")
+			list=(${list//,/ })
+
+			for ignore in "${list[@]}"; do
+				normal "|- $ignore\n"
+			done
 		fi
 	fi
 }
