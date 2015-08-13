@@ -73,129 +73,129 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 ### Initializing repositories
 
-* gg i
-* gg init
+* `gg i`
+* `gg init`
 
 ### Adding a template to .gitignore
 
-* gg ig <template>
-* gg ignore <template>
+* `gg ig <template>`
+* `gg ignore <template>`
 
 *Templates provided by [.gitignore.io](https://www.gitignore.io/)*
 
 ### Adding a file to .gitignore
 
-* gg igf <file ...>
-* gg ignorefile <file ...>
+* `gg igf <file ...>`
+* `gg ignorefile <file ...>`
 
 ### Cloning a repository
 
-* gg cl <url>
-* gg clone <url>
+* `gg cl <url>`
+* `gg clone <url>`
 
 *The URL can be provided in any format (SSH, HTTP, etc.)*
 
 ### Adding all files
 
-* gg a
-* gg add
+* `gg a`
+* `gg add`
 
 ### Adding specific files
 
-* gg a <file ...>
-* gg add <file ...>
+* `gg a <file ...>`
+* `gg add <file ...>`
 
 ### Adding all and committing
 
-* gg c <message>
-* gg commmit <message>
+* `gg c <message>`
+* `gg commmit <message>`
 
 *If no <message> is provided, a generic one listing all files modified/added will be generated.*
 
 ### Committing
 
-* gg cn <message>
+* `gg cn <message>`
 
 *If no <message> is provided, a generic one listing all files modified/added will be generated.*
 
 ### Uncommiting (resetting: `git reset HEAD~count`)
 
-* gg uc <count>
-* gg uncommit <count>
-* gg back <count>
+* `gg uc <count>`
+* `gg uncommit <count>`
+* `gg back <count>`
 
 *If no <count> is provided, 1 will be used.*
 
 ### Adding all and recommitting (amending: `git commit --amend`)
 
-* gg rc <message>
-* gg recommit <message>
-* gg am <message>
-* gg amend <message>
+* `gg rc <message>`
+* `gg recommit <message>`
+* `gg am <message>`
+* `gg amend <message>`
 
 *If no <message> is provided, a generic one listing all files modified/added will be generated.*
 
 ### Recommitting (amending: `git commit --amend`)
 
-* gg rcn <message>
-* gg amn <message>
+* `gg rcn <message>`
+* `gg amn <message>`
 
 *If no <message> is provided, a generic one listing all files modified/added will be generated.*
 
 ### Pushing
 
-* gg p
-* gg push
+* `gg p`
+* `gg push`
 
 ### Pulling
 
-* gg pl
-* gg pull
+* `gg pl`
+* `gg pull`
 
 ### Fetching
 
-* gg f
-* gg fetch
+* `gg f`
+* `gg fetch`
 
 ### Getting repository status
 
-* gg s
-* gg status
+* `gg s`
+* `gg status`
 
 ### Displaying commit log
 
-* gg l
-* gg log
+* `gg l`
+* `gg log`
 
 ### Listing all branches
 
-* gg b
-* gg ch
+* `gg b`
+* `gg ch`
 
 ### Checking out existing branch
 
-* gg ch <branch>
+* `gg ch <branch>`
 
 ### Creating and checking out new branch
 
-* gg b <branch>
+* `gg b <branch>`
 
 ### Displaying commit info
 
-* gg in <hash>
-* gg info <hash>
-* gg view <hash>
+* `gg in <hash>`
+* `gg info <hash>`
+* `gg view <hash>`
 
 *If no <hash> is provided, HEAD (last commit) will be used.*
 
 ### Displaying **Git Goodies** version
 
-* gg -V
-* gg --version
+* `gg -V`
+* `gg --version`
 
 ### Displaying **Git Goodies** help
 
-* gg
-* gg -h
-* gg --help
-* gg help
+* `gg`
+* `gg -h`
+* `gg --help`
+* `gg help`
