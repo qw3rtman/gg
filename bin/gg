@@ -610,10 +610,6 @@ info() {
 	fi
 }
 
-undo() {
-	cat /var/log/gg.log
-}
-
 # https://github.com/tj/n/blob/master/bin/n
 display_help() {
 	cat <<-EOF
@@ -641,7 +637,6 @@ display_help() {
    $(success "gg ch")                           $(notice "List all branches in repository")
    $(success "gg ch <branch>")                  $(notice "Checkout <branch>")
    $(success "gg in <hash>")                    $(notice "Display info about <hash>")
-   $(success "gg u <back>")                     $(notice "Undo <back> steps (commands)")
 
   $(printf "\e[2moptions:\e[22m")
    $(success "-V, --version")                  $(notice "Output current version of Git Goodies")
@@ -678,7 +673,6 @@ else
 			b|branch) branch $2; exit ;;
 			ch|checkout) checkout $2; exit ;;
 			in|info) info $2; exit ;;
-			u|undo) undo $1; exit ;;
 			-V|--version) version ;;
 			-h|--help|help) display_help ;;
 			*) unknown_command "gg $@"; exit 1 ;;
