@@ -774,7 +774,7 @@ else
 			a|add) add $2; exit ;;
 			c|commit) commit "${@:2}"; exit ;;
 			cn) commit_no_add "${@:2}"; exit ;;
-			uc|uncommit) uncommit $2; exit ;;
+			uc|uncommit|back) uncommit $2; exit ;;
 			am|amend|rc|recommit) amend "${@:2}"; exit ;;
 			amn|rcn) amend_no_add "${@:2}"; exit ;;
 			p|push) push ;;
