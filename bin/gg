@@ -200,9 +200,9 @@ ignore_file() {
 			if [ -e $file ]; then
 				echo "$file" >> .gitignore
 
-				success "[✔] Added "
+				success "[✔] Added"
 				success_bold " $file "
-				success " to .gitignore.\n"
+				success "to .gitignore.\n"
 			else
 				whoops "[✖] Could not add to $file to .gitignore.\n"
 				whoops_subtext "    $file does not exist.\n"
