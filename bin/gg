@@ -129,7 +129,11 @@ current_remote() {
 	remote=$(git rev-parse --abbrev-ref $(current_branch)@{upstream})
 	remote=(${remote//\// })
 
-	echo ${remote[0]}
+	if [ "${remote[0]}" = "remotes" ]; then
+		echo ${remote[1]}
+	else
+		echo ${remote[0]}
+	fi
 }
 
 current_remote_url() {
