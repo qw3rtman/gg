@@ -1,0 +1,802 @@
+#!/usr/bin/env bash
+
+# Setup.
+VERSION="0.0.1"
+
+# Colors, formatting, etc.
+normal() {
+	printf "$1"
+}
+
+success() {
+	printf "\e[0;32m$1\e[0m"
+}
+
+success_bold() {
+	printf "\e[1;32m$1\e[0m"
+}
+
+success_underline() {
+	printf "\e[4;32m$1\e[0m"
+}
+
+notice() {
+	printf "\e[0;33m$1\e[0m"
+}
+
+notice_bold() {
+	printf "\e[1;33m$1\e[0m"
+}
+
+notice_underline () {
+	printf "\e[4;33m$1\e[0m"
+}
+
+whoops() {
+	printf "\e[1;31m$1\e[0m"
+}
+
+whoops_subtext() {
+	subtext=${1//$'\n'/$'\n    '}
+
+	printf "\e[0;31m$subtext\e[0m"
+}
+
+display() {
+	printf "\e[2m%s\e[22m \e[2m\e[90m|\e[22m\e[0m \e[32m%s\e[0m\n" "$1" "$2"
+}
+
+display_active() {
+	printf "\e[3m%s\e[22m \e[2m\e[90m|\e[22m\e[0m \e[33m%s\e[0m\n" "$1" "$2"
+}
+
+# Utilities.
+latest_commit_hash() {
+	git rev-parse --short HEAD
+}
+
+latest_commit_message() {
+	git log -1 --pretty=%B
+}
+
+current_branch() {
+	git symbolic-ref --short HEAD
+}
+
+all_branches() {
+	git for-each-ref --format='%(refname:short)' refs/heads/
+}
+
+all_branches_pretty() {
+	branches=$(all_branches)
+
+	branches_array=()
+	while read -r line; do
+		branches_array+=("$line")
+	done <<< "$branches"
+
+	for branch in "${branches_array[@]}"; do
+		if [ "$branch" == "$(current_branch)" ]; then
+			printf "|- "
+			success_bold "$branch\n"
+		else
+			printf "\e[2m|- %s\n\e[22m" "$branch"
+		fi
+	done
+}
+
+all_commits_to_push() {
+	git cherry --abbrev -v
+}
+
+all_commits_to_push_pretty() {
+	commits=$(all_commits_to_push)
+
+	commits_array=()
+	while read -r line; do
+		commits_array+=("$line")
+	done <<< "$commits"
+
+	for ((i=${#commits_array[@]} - 1; i >= 0; i--)); do
+		commit=${commits_array[i]}
+		commit_fixed=($commit)
+
+		printf " \e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+	done
+}
+
+all_commits_to_pull() {
+	git fetch --quiet
+	git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch)
+}
+
+all_commits_to_pull_pretty() {
+	commits=$(all_commits_to_pull)
+
+	commits_array=()
+	while read -r line; do
+		commits_array+=("$line")
+	done <<< "$commits"
+
+	for commit in "${commits_array[@]}"; do
+		commit_fixed=($commit)
+
+		printf " \e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+	done
+}
+
+current_remote() {
+	remote=$(git rev-parse --abbrev-ref $(current_branch)@{upstream})
+	remote=(${remote//\// })
+
+	if [ "${remote[0]}" = "remotes" ]; then
+		echo ${remote[1]}
+	else
+		echo ${remote[0]}
+	fi
+}
+
+current_remote_url() {
+	git config --get remote.$(current_remote).url
+}
+
+# Commands.
+version() {
+	success "gg"
+	normal " version "
+	notice "$VERSION\n"
+}
+
+init() {
+	output=($(git init))
+
+	success "[✔]"
+	success_bold " ${output[0]} "
+	success "${output[1]} Git repository.\n"
+}
+
+ignore_list() {
+	list=$(curl --silent "https://www.gitignore.io/api/list")
+	list=(${list//,/ })
+
+	for ignore in "${list[@]}"; do
+		normal "|- $ignore\n"
+	done
+
+	notice "\n[~] You must enter one of the templates or languages listed above.\n"
+}
+
+ignore() {
+	if [ -z $1 ]; then
+		ignore_list
+	else
+		for template in $@; do
+			ignore=$(curl --silent "https://www.gitignore.io/api/$template")
+			ignore_array=($ignore)
+
+			if [ ${ignore_array[5]} == "ERROR:" ]; then
+				whoops "[✖] Template $template does not exist.\n"
+				whoops_subtext "    You must enter one of the templates or languages listed with $(notice "gg ig").\n"
+			else
+				if [[ -s ".gitignore" ]]; then
+					echo -e	 "\n" >> .gitignore
+				fi
+
+				echo "$ignore" >> .gitignore
+
+				success "[✔] Added"
+				success_bold " $template "
+				success "template to .gitignore.\n"
+			fi
+		done
+	fi
+}
+
+ignore_file() {
+	if [ -z $1 ]; then
+		notice "[~] You must specify a file to add to .gitignore.\n"
+	else
+		if [[ -s ".gitignore" ]]; then
+			echo >> .gitignore
+		fi
+
+		for file in $@; do
+			if [ -e $file ]; then
+				echo "$file" >> .gitignore
+
+				success "[✔] Added"
+				success_bold " $file "
+				success "to .gitignore.\n"
+			else
+				whoops "[✖] Could not add $file to .gitignore.\n"
+				whoops_subtext "    $file does not exist.\n"
+			fi
+		done
+	fi
+}
+
+clone() {
+	if [ -z $1 ]; then
+		notice "[~] You must enter a repository URL or GitHub project (username/repository).\n"
+	else
+		URL=(${1//:/ })
+		PROTOCOL=${URL[0]}
+
+		if [ "${URL[1]:0:2}" != "//" ]; then
+			URL_FIXED="https://github.com/${URL[@]}.git"
+			PROTOCOL="https"
+		else
+			URL_FIXED="$1"
+		fi
+
+		notice "[~] Cloning from"
+		notice_bold " $URL_FIXED "
+		notice "over"
+		notice_bold " $PROTOCOL"
+		notice "...\n"
+
+		OUTPUT=$((git clone "$URL_FIXED" --quiet) 2>&1)
+		if [ $? -eq 0 ]; then
+			success "\n[✔] Cloned into"
+
+			URL_ARRAY=(${URL_FIXED//\// })
+			URL_LAST_PART=${URL_ARRAY[${#URL_ARRAY[@]} - 1]}
+
+			success_bold " ${URL_LAST_PART%????}.\n"
+		else
+			whoops "\n[✖] Could not clone repository.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
+add() {
+	if [ -z $1 ]; then
+		git add -A
+
+		success "[✔] Added everything!\n"
+	else
+		for file in $@; do
+			if [ -e $file ]; then
+				git add $file
+
+				success "[✔] Added"
+				success_bold " $file"
+				success "!\n"
+			else
+				whoops "[✖] Could not add $file.\n"
+				whoops_subtext "    $file does not exist.\n"
+			fi
+		done
+	fi
+}
+
+commit() {
+	add
+
+	commit_no_add "$@"
+}
+
+commit_no_add() {
+	if [ -z $1 ]; then
+		message=$(git diff --name-only --cached)
+		message="Added ${message//$'\n'/, }."
+	else
+		message="$@"
+	fi
+
+	OUTPUT=$(git commit -m "$message")
+	if [ $? -eq 0 ]; then
+		success "[✔] Committed!\n\n"
+
+		hash="$(latest_commit_hash)"
+
+		branch="$(current_branch)"
+
+		message="$(latest_commit_message)"
+		message_array=()
+		while read -r line; do
+			message_array+=("$line")
+		done <<< "$message"
+		message_fixed="${message_array[0]}"
+		if [ ${#message_array[@]} -gt 1 ]; then
+			message_fixed="$message_fixed (...)"
+		fi
+
+		printf "\e[2m\e[90m[\e[22m\e[0m$(success $branch)\e[2m\e[90m|\e[22m\e[0m$(notice $hash)\e[2m\e[90m]\e[22m\e[0m \e[90m$message_fixed\e[39m\n"
+	elif [ $? -eq 1 ]; then
+		notice "[~] Everything already committed.\n"
+	else
+		whoops "[✖] Could not commit changes.\n"
+		whoops_subtext "    $OUTPUT\n"
+	fi
+}
+
+uncommit() {
+	count=${1-1}
+	current=$(($count-1))
+
+	INFO=$(info HEAD~$current)
+
+	OUTPUT=$((git reset HEAD~$count) 2>&1)
+	if [ $? -eq 0 ]; then
+		success "[✔] Uncommited!\n\n"
+
+		printf "$INFO"
+	else
+		whoops "[✖] Could not uncommit.\n"
+		whoops_subtext "    $OUTPUT\n"
+	fi
+}
+
+amend() {
+	add
+
+	echo
+
+	amend_no_add "$@"
+}
+
+amend_no_add() {
+	if [ -z $1 ] || [ "$1" == "\n" ]; then
+		message_specified=0
+	else
+		message_specified=1
+
+		message="$@"
+	fi
+
+	BEFORE_HASH=$(latest_commit_hash)
+	BEFORE_MESSAGE=$(latest_commit_message)
+	BEFORE_INFO=$(info HEAD)
+	printf "\e[2mbefore:\e[22m\n"
+
+	before_info_array=()
+	while read -r line; do
+		before_info_array+=("$line")
+	done <<< "$BEFORE_INFO"
+
+	for before_info_line in "${before_info_array[@]}"; do
+		printf "\t$before_info_line\n"
+	done
+
+	echo
+
+	if [ $message_specified -eq 0 ]; then
+		OUTPUT=$((git commit --amend --no-edit) 2>&1)
+	else
+		OUTPUT=$((git commit --amend -m "$message") 2>&1)
+	fi
+
+	if [ $? -eq 0 ]; then
+		AFTER_HASH=$(latest_commit_hash)
+		AFTER_MESSAGE=$(latest_commit_message)
+		AFTER_INFO=$(info HEAD)
+		printf "\e[2mafter:\e[22m\n"
+
+		after_info_array=()
+		while read -r line; do
+			after_info_array+=("$line")
+		done <<< "$AFTER_INFO"
+
+		for after_info_line in "${after_info_array[@]}"; do
+			printf "\t$after_info_line\n"
+		done
+
+		printf "\n\e[2msummary:\e[22m\n"
+		printf "\t\e[2m\e[90m[\e[22m\e[0m\e[22m\e[0m$(printf "\e[2m\e[33m$BEFORE_HASH\e[0m\e[22m") \e[90m->\e[39m $(notice $AFTER_HASH)\e[2m\e[90m]\e[22m\e[0m \e[2m\e[90m$BEFORE_MESSAGE\e[22m \e[90m->\e[39m \e[90m$AFTER_MESSAGE\e[39m\n"
+
+		success "\n[✔] Amended most recent commit!\n"
+	else
+		whoops "[✖] Could not amend most recent commit.\n"
+		whoops_subtext "    $OUTPUT\n"
+	fi
+}
+
+push() {
+	if [ -z "$(git remote show)" ]; then
+		whoops "[✖] No remote to push to.\n"
+	else
+		notice "[~] Pushing"
+		notice_bold " $(current_branch) "
+		notice "branch"
+		notice " to remote"
+		notice_bold " $(current_remote)"
+		notice " ($(current_remote_url))...\n\n"
+
+		commits=$(git cherry --abbrev -v)
+
+		OUTPUT=$((git push) 2>&1)
+		if [ $? -eq 0 ]; then
+			if [ "$OUTPUT" == "Everything up-to-date" ]; then
+				success "[✔] All commits already pushed.\n"
+			else
+				commits_array=()
+				while read -r line; do
+					commits_array+=("$line")
+				done <<< "$commits"
+
+				for ((i=${#commits_array[@]} - 1; i >= 0; i--)); do
+					commit=${commits_array[i]}
+					commit_fixed=($commit)
+
+					printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+				done
+
+				success "\n[✔] Pushed ${#commits_array[@]} commits!\n"
+			fi
+		else
+			whoops "[✖] Could not push commits.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
+pull() {
+	if [ -z "$(git remote show)" ]; then
+		whoops "[✖] No remote to pull from.\n"
+	else
+		notice "[~] Pulling"
+		notice_bold " $(current_branch) "
+		notice "branch"
+		notice " from remote"
+		notice_bold " $(current_remote)"
+		notice " ($(current_remote_url))...\n\n"
+
+		OUTPUT=$((git fetch --quiet) 2>&1)
+		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch))
+
+		OUTPUT=$((git pull) 2>&1)
+		if [ $? -eq 0 ]; then
+			if [ "$OUTPUT" == "Already up-to-date." ]; then
+				success "[✔] Everything is already up-to-date.\n"
+			else
+				commits_array=()
+				while read -r line; do
+					commits_array+=("$line")
+				done <<< "$commits"
+
+				for commit in "${commits_array[@]}"; do
+					commit_fixed=($commit)
+
+					printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+				done
+
+				success "\n[✔] Pulled ${#commits_array[@]} commits!\n"
+			fi
+		else
+			whoops "[✖] Could not pull commits.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
+fetch() {
+	if [ -z "$(git remote show)" ]; then
+		whoops "[✖] No remote to fetch from.\n"
+	else
+		notice "[~] Fetching"
+		notice_bold " $(current_branch) "
+		notice "branch"
+		notice " from remote"
+		notice_bold " $(current_remote)"
+		notice " ($(current_remote_url))...\n\n"
+
+		OUTPUT=$((git fetch) 2>&1)
+		commits=$(git log --left-right --graph --cherry-pick --oneline $(current_branch)...$(current_remote)/$(current_branch))
+		if [ $? -eq 0 ]; then
+			if [ -z "$OUTPUT" ]; then
+				success "[✔] Everything is already up-to-date.\n"
+			else
+				success "[✔] Fetched!\n\n"
+
+				commits_array=()
+				while read -r line; do
+					commits_array+=("$line")
+				done <<< "$commits"
+
+				for commit in "${commits_array[@]}"; do
+					commit_fixed=($commit)
+
+					printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+				done
+			fi
+		else
+			whoops "[✖] Could not fetch commits.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
+status() {
+	printf "\e[2m\e[90m[\e[22m\e[0m$(success "$(current_branch)") \e[90m->\e[39m $(success "$(current_remote)/$(current_branch)")\e[2m\e[90m|\e[22m\e[0m$(notice $(latest_commit_hash))\e[2m\e[90m]\e[22m\e[0m \e[90m$(latest_commit_message)\e[39m\n"
+
+	echo
+
+	# http://stackoverflow.com/a/3278427
+	git fetch --quiet
+
+	LOCAL=$(git rev-parse @{0})
+	REMOTE=$(git rev-parse @{u})
+	BASE=$(git merge-base @{0} @{u})
+
+	push=0
+	pull=0
+
+	if [ $LOCAL != $REMOTE ]; then
+		position=($(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch)))
+
+		ahead=${position[0]}
+		behind=${position[1]}
+	fi
+
+	if [ $LOCAL = $REMOTE ]; then
+	    display "position" "up-to-date with remote"
+	elif [ $LOCAL = $BASE ]; then
+	    display_active "position" "$(notice "$behind commits behind remote (pull)")"
+		pull=1
+	elif [ $REMOTE = $BASE ]; then
+		display_active "position" "$(notice "$ahead commits ahead of remote (push)")"
+		push=1
+	else
+	    display_active "position" "$(whoops "diverged from remote") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
+		pull=1
+		push=1
+	fi
+
+	git diff --exit-code --quiet
+	if [ $? -eq 0 ]; then
+		display "staging " "all changes staged"
+	else
+		display_active "staging " "$(notice "not all changes staged (add changes)")"
+	fi
+
+	git update-index -q --refresh
+	git diff-index --quiet --cached HEAD
+	if [ $? -eq 0 ]; then
+		display "commits " "all changes committed"
+	else
+		display_active "commits " "$(notice "not all changes committed (commit changes)")"
+	fi
+
+	if [ $push -eq 1 ] | [ $pull -eq 1 ]; then
+		echo
+	fi
+
+	if [ $push -eq 1 ]; then
+		echo
+
+		printf "\e[2mcommits ahead (to push):\e[22m\n"
+
+		all_commits_to_push_pretty
+	fi
+
+	if [ $pull -eq 1 ]; then
+		echo
+
+		printf "\e[2mcommits behind (to pull):\e[22m\n"
+
+		all_commits_to_pull_pretty
+	fi
+}
+
+log() {
+	git log --pretty=format:"$(printf "\e[2m\e[90m[\e[22m\e[0m")$(success $(current_branch))$(printf "\e[2m\e[90m|\e[22m\e[0m")$(printf "\e[0;33m")%h$(printf "\e[0m")$(printf "\e[2m\e[90m]\e[22m\e[0m \e[90m")%s$(printf "\e[39m")"
+}
+
+branch() {
+	if [ -z $1 ]; then
+		branches=$(all_branches)
+
+		if [ -z "$branches" ]; then
+			notice "[~] No branches exist.\n"
+		else
+			all_branches_pretty
+		fi
+	else
+		branch="$1"
+
+		OUTPUT=$((git branch "$branch") 2>&1)
+		if [ $? -eq 0 ]; then
+			success "[✔] Created new branch"
+			success_bold " $branch"
+			success "!\n"
+
+			checkout "$branch"
+		else
+			if [ "${OUTPUT: -15}" == "already exists." ]; then
+				notice "[~] Branch"
+				notice_bold " $branch "
+				notice "already exists.\n"
+
+				checkout "$branch"
+			else
+				whoops "[✖] Could not create new branch $branch.\n"
+				whoops_subtext "    $OUTPUT\n"
+			fi
+		fi
+	fi
+}
+
+checkout() {
+	if [ -z $1 ]; then
+		branch
+	else
+		branch="$1"
+
+		OUTPUT=$((git checkout "$branch") 2>&1)
+		if [ $? -eq 0 ]; then
+			OUTPUT=($OUTPUT)
+			if [ "${OUTPUT[0]}" == "Switched" ]; then
+				success "[✔] Switched to branch"
+				success_bold " $branch"
+				success "!\n\n"
+
+				all_branches_pretty
+			elif [ "${OUTPUT[0]}" == "Already" ]; then
+				success "[✔] Already on branch"
+				success_bold " $branch"
+				success ".\n\n"
+
+				all_branches_pretty
+			fi
+		elif [ $? -eq 1 ]; then
+			notice "[~] Branch"
+			notice_bold " $branch "
+			notice "does not exist.\n\n"
+
+			all_branches_pretty
+		else
+			whoops "[✖] Could not switch to branch $branch.\n"
+			whoops_subtext "    $OUTPUT\n"
+		fi
+	fi
+}
+
+info() {
+	if [ -z $1 ]; then
+		hash="HEAD"
+	else
+		hash="$1"
+	fi
+
+	# http://stackoverflow.com/a/18516021
+	OUTPUT=$((git cat-file -t $hash) 2>&1)
+	if [ $? -eq 0 ]; then
+		hash=$(git rev-parse --short $hash)
+		commit_message=$(git log -n 1 --pretty=format:"%s" $hash)
+		ago=$(git log -n 1 --pretty=format:"%cr" $hash)
+
+		printf "\e[2m\e[90m[\e[22m\e[0m$(success "$ago")\e[2m\e[90m|\e[22m\e[0m$(notice "$hash")\e[2m\e[90m]\e[22m\e[0m \e[90m$commit_message\e[39m\n"
+
+		body="$(git log -n 1 --date=local --pretty=format:"%b" $hash)"
+		if [ ! -z "$body" ]; then
+			echo
+
+			printf "\e[90m\t${body//$'\n'/$'\n\t'}\e[39m\n"
+		fi
+
+		echo
+
+		display "hash     " "$(git log -n 1 --pretty=format:"%H" $hash)"
+
+		echo
+
+		display "author   " "$(git log -n 1 --date=local --pretty=format:"%aN $(printf "\e[33m")<%aE>$(printf "\e[0m") $(printf "\e[32m")%ad$(printf "\e[0m")" $hash)"
+		display "committer" "$(git log -n 1 --date=local --pretty=format:"%cN $(printf "\e[33m")<%cE>$(printf "\e[0m") $(printf "\e[32m")%cd$(printf "\e[0m")" $hash)"
+
+		echo
+
+		printf "\e[2mfiles modified:\e[22m\n"
+
+		files=$(git diff-tree --no-commit-id --name-only -r $hash)
+
+		files_array=()
+		while read -r line; do
+			files_array+=("$line")
+		done <<< "$files"
+
+		for file in "${files_array[@]}"; do
+			printf "\e[2m |- \e[22m"
+			success "$file\n"
+		done
+
+		echo
+
+		printf "\e[2mbranches:\e[22m\n"
+
+		branches=$(git branch --contains $hash)
+
+		branches_array=()
+		while read -r line; do
+			branches_array+=("$line")
+		done <<< "$branches"
+
+		for branch in "${branches_array[@]}"; do
+			printf "\e[2m |- \e[22m"
+			success "${branch//* }\n"
+		done
+	else
+		whoops "[✖] Object $hash does not exist.\n"
+		whoops_subtext "    $OUTPUT\n"
+	fi
+}
+
+# https://github.com/tj/n/blob/master/bin/n
+display_help() {
+	cat <<-EOF
+
+  $(printf "\e[2musage:\e[22m")
+    $(success "gg") $(notice "[options] [COMMAND] [args]")
+
+  $(printf "\e[2mcommands:\e[22m")
+    $(success "gg")                              $(notice "Display this help information")
+    $(success "gg i")                            $(notice "Initialize new Git repository")
+    $(success "gg ig")                           $(notice "List available .gitignore templates")
+    $(success "gg ig <template>")                $(notice "Add .gitignore file from <template>")
+    $(success "gg igf <file ...>")               $(notice "Add all <file>(s) to .gitignore")
+    $(success "gg cl <url>")                     $(notice "Clone repository from <url>")
+    $(success "gg a")                            $(notice "Add all files")
+    $(success "gg a <file ...>")                 $(notice "Add all <file>(s)")
+    $(success "gg c <message>")                  $(notice "Add all files and commit with <message>")
+    $(success "gg cn <message>")                 $(notice "Commit with <message>")
+    $(success "gg uc <count>")                   $(notice "Go back (uncommit) <count> commits")
+    $(success "gg rc <message>")                 $(notice "Add all files and recommit (amend) with <message>")
+    $(success "gg rcn <message>")                $(notice "Recommit (amend) with <message>")
+    $(success "gg p")                            $(notice "Push all commits to remote")
+    $(success "gg pl")                           $(notice "Pull all commits from remote")
+    $(success "gg f")                            $(notice "Fetch all commits from remote")
+    $(success "gg s")                            $(notice "Display repository status")
+    $(success "gg l")                            $(notice "Display repository commit log")
+    $(success "gg b")                            $(notice "List all branches in repository")
+    $(success "gg b <branch>")                   $(notice "Create and checkout <branch>")
+    $(success "gg ch")                           $(notice "List all branches in repository")
+    $(success "gg ch <branch>")                  $(notice "Checkout <branch>")
+    $(success "gg in <hash>")                    $(notice "Display info about <hash>")
+
+  $(printf "\e[2moptions:\e[22m")
+    $(success "-V, --version")                   $(notice "Output current version of Git Goodies")
+    $(success "-h, --help")                      $(notice "Display this help information")
+
+EOF
+	exit 0
+}
+
+unknown_command() {
+	whoops "[✖] Unknown command ("
+	whoops_subtext "$1"
+	whoops ")."
+	whoops_subtext "\n    See all available commands with "
+	whoops "gg --help.\n"
+}
+
+if test $# -eq 0; then
+	display_help
+else
+	while test $# -ne 0; do
+		case $1 in
+			i|init) init ;;
+			ig|ignore) ignore "${@:2}"; exit ;;
+			igf|ignorefile) ignore_file "${@:2}"; exit ;;
+			cl|clone) clone $2; exit ;;
+			a|add) add $2; exit ;;
+			c|commit) commit "${@:2}"; exit ;;
+			cn) commit_no_add "${@:2}"; exit ;;
+			uc|uncommit|back) uncommit $2; exit ;;
+			am|amend|rc|recommit) amend "${@:2}"; exit ;;
+			amn|rcn) amend_no_add "${@:2}"; exit ;;
+			p|push) push ;;
+			pl|pull) pull ;;
+			f|fetch) fetch ;;
+			s|status) status ;;
+			l|log) log ;;
+			b|branch) branch $2; exit ;;
+			ch|checkout) checkout $2; exit ;;
+			v|view|in|info) info $2; exit ;;
+			-V|--version) version ;;
+			-h|--help|help) display_help ;;
+			*) unknown_command "gg $@"; exit 1 ;;
+		esac
+		shift
+	done
+fi
