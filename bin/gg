@@ -142,7 +142,7 @@ current_remote_url() {
 
 # Commands.
 version() {
-	success "gg"
+	success "Git Goodies"
 	normal " version "
 	notice "$VERSION\n"
 }
