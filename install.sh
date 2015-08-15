@@ -14,4 +14,5 @@ sudo mv -fv /var/tmp/gg /usr/local/bin/gg
 
 echo
 
-printf "\e[32m[✔] Successfully installed \e[1;32mGit Goodies\e[0m\e[32m.\e[0m\n"
+version=($(gg -V))
+printf "\e[32m[✔] Successfully installed Git Goodies v${version[3]}\e[32m!\n"
