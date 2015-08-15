@@ -1,8 +1,6 @@
 `gg`: Git Goodies
 =================
 
-### [Looking for the old, unmaintained, and buggy Node.js version?](https://github.com/qw3rtman/gg.js)
-
 ![Introduction](http://nimitkalra.com/images/gg/gg.gif)
 
 `gg` helps you *work with `git` more efficiently*, saving you keystrokes for your most prized projects.
