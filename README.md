@@ -29,6 +29,8 @@ All this installation script does is download the `gg` script, make it an execut
 
 If you don't feel comfortable executing a random script, [its source is available here](https://github.com/qw3rtman/gg/blob/master/install.sh).
 
+**If you use [`oh-my-zsh`](https://github.com/robbyrussell/oh-my-zsh), `gg` is already aliased to `git gui citool`. If you don't use this alias, you can unalias it in your `.zshrc` file by adding `unalias gg` at the end of `.zshrc`.**
+
 `gg` relies solely on `git` and attempts to use built-in Shell features over external programs, such as using Bash substitution instead of `sed`.
 
 ## Usage
