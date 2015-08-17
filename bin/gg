@@ -794,7 +794,7 @@ else
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
 			s|status) status ;;
-      st|status_files) status_files ;;
+      			st|status_files) status_files ;;
 			l|log) log ;;
 			b|branch) branch $2; exit ;;
 			ch|checkout) checkout $2; exit ;;
