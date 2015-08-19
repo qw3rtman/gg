@@ -1,7 +1,7 @@
 Git Goodies
 ===========
 
-![Introduction](http://nimitkalra.com/images/gg/gg.gif)
+<p align="center"><img src="http://nimitkalra.com/images/gg/gg.gif"/></p>
 
 `gg` helps you *work with `git` more efficiently*, saving you keystrokes for your most prized projects.
 
