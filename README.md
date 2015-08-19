@@ -256,3 +256,4 @@ See the [TODO](#todo) below for some contributions you can work on!
 
 ## TODO
 
+* Integrate with GitHub (Issue [#34](https://github.com/qw3rtman/gg/issues/34))
