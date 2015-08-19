@@ -1,5 +1,5 @@
-`gg`: Git Goodies
-=================
+Git Goodies
+===========
 
 ![Introduction](http://nimitkalra.com/images/gg/gg.gif)
 
