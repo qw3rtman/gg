@@ -37,7 +37,7 @@ whoops() {
 }
 
 whoops_subtext() {
-	subtext=${1//$'\n'/$'\n    '}
+	subtext=${1//$(printf '\n')/$(printf '\n    ')}
 
 	printf "\e[0;31m$subtext\e[0m"
 }
@@ -280,7 +280,7 @@ commit() {
 commit_no_add() {
 	if [ -z $1 ]; then
 		message=$(git diff --name-only --cached)
-		message="Added ${message//$'\n'/, }."
+		message="Added ${message//$(printf '\n')/, }."
 	else
 		message="$@"
 	fi
@@ -673,7 +673,7 @@ info() {
 		if [ ! -z "$body" ]; then
 			echo
 
-			printf "\e[90m\t${body//$'\n'/$'\n\t'}\e[39m\n"
+			printf "\e[90m\t${body//$(printf '\n')/$(printf '\n\t')}\e[39m\n"
 		fi
 
 		echo
