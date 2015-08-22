@@ -150,9 +150,14 @@ version() {
 init() {
 	output=($(git init))
 
-	success "[✔]"
-	success_bold " ${output[0]} "
-	success "${output[1]} Git repository.\n"
+	# Check if git is already initialized
+	if [ -d .git ]; then
+	  whoops " Git is already initialized.\n"
+	else
+		success "[✔]"
+		success_bold " ${output[0]} "
+		success "${output[1]} Git repository.\n"
+	fi;
 }
 
 ignore_list() {
