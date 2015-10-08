@@ -278,7 +278,7 @@ commit() {
 }
 
 commit_no_add() {
-	if [ -z "$1" ]; then
+	if [ -z "$1"]; then
 		message=$(git diff --name-only --cached)
 		message="Added ${message//$(printf '\n')/, }."
 	else
