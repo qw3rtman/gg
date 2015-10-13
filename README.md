@@ -21,6 +21,7 @@ You can see the current local branch and its respective remote branch, the lates
 **All of this from one four character command.**
 
 ## Installation
+**Linux/OSX**
 ```sh
 curl -fsSL git.io/gg.sh | sh
 ```
@@ -33,6 +34,20 @@ If you don't feel comfortable executing a random script, [its source is availabl
 **If you use [`oh-my-zsh`](https://github.com/robbyrussell/oh-my-zsh), `gg` is already aliased to `git gui citool`. If you don't use this alias, you can unalias it in your `.zshrc` file by adding `unalias gg` at the end of `.zshrc`.**
 
 `gg` relies solely on `git` and attempts to use built-in Shell features over external programs, such as using Bash substitution instead of `sed`.
+
+**Windows:**  
+
+Note: This assumes that you already have the git installed on your system and
+it is configured to be used on the command line.
+
+* Open the cmd and navigate to a folder included in your PATH.
+* Run the following commands
+```
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/qw3rtman/gg/master/bin/gg', 'gg')"
+powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/qw3rtman/gg/master/bin/gg.cmd', 'gg.cmd')"
+```
+* Open a new cmd instance and enjoy.
+
 
 ## Usage
 
