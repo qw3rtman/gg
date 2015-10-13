@@ -274,3 +274,4 @@ See the [TODO](#todo) below for some contributions you can work on!
 
 * Integrate with GitHub (Issue [#34](https://github.com/qw3rtman/gg/issues/34))
 * Add pretty graphs (Issue [#51](https://github.com/qw3rtman/gg/issues/51))
+* Some form of persistent user profile (Issue [#57](https://github.com/qw3rtman/gg/issues/57))
