@@ -15,8 +15,10 @@ install() {
 
 	echo
 
-	version=($(gg -V))
-	printf "\e[32m[✔] Successfully installed Git Goodies v${version[3]}\e[32m!\n"
+	version=$(gg -V)
+	IFS=' ' read -a version_split <<< "${version}"
+	
+	printf "\e[32m[✔] Successfully installed Git Goodies v${version_split[3]}\e[32m!\n"
 }
 
 install
