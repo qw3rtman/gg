@@ -22,7 +22,7 @@ You can see the current local branch and its respective remote branch, the lates
 
 ## Installation
 ```sh
-curl -fsSL git.io/gg.sh | sh
+curl -fsSL https://git.io/gg.sh | sh
 ```
 (HTTPS installation also available via `curl -fsSL https://git.io/gg.sh | sh`)
 
