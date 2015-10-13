@@ -167,7 +167,7 @@ ignore_list() {
 }
 
 ignore() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		ignore_list
 	else
 		for template in $@; do
@@ -193,7 +193,7 @@ ignore() {
 }
 
 ignore_file() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		notice "[~] You must specify a file to add to .gitignore.\n"
 	else
 		if [[ -s ".gitignore" ]]; then
@@ -216,7 +216,7 @@ ignore_file() {
 }
 
 clone() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		notice "[~] You must enter a repository URL or GitHub project (username/repository).\n"
 	else
 		URL=(${1//:/ })
@@ -251,7 +251,7 @@ clone() {
 }
 
 add() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		git add -A
 
 		success "[✔] Added everything!\n"
@@ -278,7 +278,7 @@ commit() {
 }
 
 commit_no_add() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		message=$(git diff --name-only --cached)
 		message="Added ${message//$(printf '\n')/, }."
 	else
@@ -338,7 +338,7 @@ amend() {
 }
 
 amend_no_add() {
-	if [ -z $1 ] || [ "$1" == "\n" ]; then
+	if [ -z "$1" ] || [ "$1" == "\n" ]; then
 		message_specified=0
 	else
 		message_specified=1
@@ -585,7 +585,7 @@ log() {
 }
 
 branch() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		branches=$(all_branches)
 
 		if [ -z "$branches" ]; then
@@ -619,7 +619,7 @@ branch() {
 }
 
 checkout() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		branch
 	else
 		branch="$1"
@@ -654,7 +654,7 @@ checkout() {
 }
 
 info() {
-	if [ -z $1 ]; then
+	if [ -z "$1" ]; then
 		hash="HEAD"
 	else
 		hash="$1"
