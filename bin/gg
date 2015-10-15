@@ -604,7 +604,9 @@ status() {
 			success "$file\n"
 		done
 	else
-		printf "\e[2m no files modified\e22m"
+		echo
+
+		printf "\e[2mno files modified\e[22m\n"
 	fi
 }
 
@@ -731,7 +733,9 @@ info() {
 				success "$file\n"
 			done
 		else
-			printf "\e[2m no files modified\e22m"
+			echo
+
+			printf "\e[2mno files modified\e[22m\n"
 		fi
 
 		echo
