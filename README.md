@@ -23,9 +23,9 @@ You can see the current local branch and its respective remote branch, the lates
 ## Installation
 **Linux/OSX**
 ```sh
-curl -fsSL git.io/gg.sh | sh
+curl -fsSL git.io/gg.sh | bash
 ```
-(HTTPS installation also available via `curl -fsSL https://git.io/gg.sh | sh`)
+(HTTPS installation also available via `curl -fsSL https://git.io/gg.sh | bash`)
 
 All this installation script does is download the `gg` script, make it an executable, and copy it to your $PATH (/usr/local/bin). For copying to your $PATH, it may require you to enter your password. If there is a better way to do this, please send in a pull request.
 
