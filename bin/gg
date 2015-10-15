@@ -420,7 +420,7 @@ push() {
 					commit=${commits_array[i]}
 					commit_fixed=($commit)
 
-					printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m${commit:10}\e[39m\n"
+					printf "\e[2m\e[90m[\e[22m\e[0m$(success $(current_branch))\e[2m\e[90m|\e[22m\e[0m$(notice ${commit_fixed[1]})\e[2m\e[90m]\e[22m\e[0m \e[90m%s\e[39m\n" "${commit:10}"
 				done
 
 				success "\n[✔] Pushed ${#commits_array[@]} commits!\n"
@@ -509,7 +509,7 @@ fetch() {
 }
 
 status() {
-	printf "\e[2m\e[90m[\e[22m\e[0m$(success "$(current_branch)") \e[90m->\e[39m $(success "$(current_remote)/$(current_branch)")\e[2m\e[90m|\e[22m\e[0m$(notice $(latest_commit_hash))\e[2m\e[90m]\e[22m\e[0m \e[90m$(latest_commit_message)\e[39m\n"
+	printf "\e[2m\e[90m[\e[22m\e[0m$(success "$(current_branch)") \e[90m->\e[39m $(success "$(current_remote)/$(current_branch)")\e[2m\e[90m|\e[22m\e[0m$(notice $(latest_commit_hash))\e[2m\e[90m]\e[22m\e[0m \e[90m%s\e[39m\n" "$(latest_commit_message)"
 
 	echo
 
