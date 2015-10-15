@@ -586,8 +586,6 @@ status() {
 		all_commits_to_pull_pretty
 	fi
 
-	echo
-
 	# Source: http://stackoverflow.com/questions/5096268/git-reports-get-changed-files
 	files=$(git ls-files --other --modified --exclude-standard)
 
@@ -597,6 +595,8 @@ status() {
 	done <<< "$files"
 
 	if [[ ${files_array[0]} != "" ]]; then
+		echo
+
 		printf "\e[2mfiles modified:\e[22m\n"
 
 		for file in "${files_array[@]}"; do
@@ -711,8 +711,6 @@ info() {
 		display "author   " "$(git log -n 1 --date=local --pretty=format:"%aN $(printf "\e[33m")<%aE>$(printf "\e[0m") $(printf "\e[32m")%ad$(printf "\e[0m")" $hash)"
 		display "committer" "$(git log -n 1 --date=local --pretty=format:"%cN $(printf "\e[33m")<%cE>$(printf "\e[0m") $(printf "\e[32m")%cd$(printf "\e[0m")" $hash)"
 
-		echo
-
 		# Source: http://stackoverflow.com/questions/5096268/git-reports-get-changed-files
 		files=$(git ls-files --other --modified --exclude-standard)
 
@@ -722,6 +720,8 @@ info() {
 		done <<< "$files"
 
 		if [[ ${files_array[0]} != "" ]]; then
+			echo
+
 			printf "\e[2mfiles modified:\e[22m\n"
 
 			for file in "${files_array[@]}"; do
