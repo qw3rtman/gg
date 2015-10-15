@@ -759,6 +759,10 @@ info() {
 	fi
 }
 
+status_files() {
+  git status -s
+}
+
 # https://github.com/tj/n/blob/master/bin/n
 display_help() {
 	cat <<-EOF
@@ -784,6 +788,7 @@ display_help() {
     $(success "gg pl")                           $(notice "Pull all commits from remote")
     $(success "gg f")                            $(notice "Fetch all commits from remote")
     $(success "gg s")                            $(notice "Display repository status")
+    $(success "gg st")                           $(notice "Display repository's files status")
     $(success "gg l")                            $(notice "Display repository commit log")
     $(success "gg b")                            $(notice "List all branches in repository")
     $(success "gg b <branch>")                   $(notice "Create and checkout <branch>")
@@ -826,6 +831,7 @@ else
 			pl|pull) pull ;;
 			f|fetch) fetch ;;
 			s|status) status ;;
+      			st|status_files) status_files ;;
 			l|log) log ;;
 			b|branch) branch $2; exit ;;
 			ch|checkout) checkout $2; exit ;;
