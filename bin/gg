@@ -223,7 +223,14 @@ clone() {
 		PROTOCOL=${URL[0]}
 
 		if [ "${URL[1]:0:2}" != "//" ]; then
-			URL_FIXED="https://github.com/${URL[@]}.git"
+			username="$(git config --get gg.username)"
+
+			if [ -n "$username" ] && [[ ${URL[@]} != *\/* ]]; then
+				URL_FIXED="https://github.com/$username/${URL[@]}.git"
+			else
+				URL_FIXED="https://github.com/${URL[@]}.git"
+			fi
+
 			PROTOCOL="https"
 		else
 			URL_FIXED="$1"
