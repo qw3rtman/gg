@@ -523,19 +523,19 @@ status() {
 	push=0
 	pull=0
 
-	if [ $LOCAL != $REMOTE ]; then
+	if [ "$LOCAL" != "$REMOTE" ]; then
 		position=($(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch)))
 
 		ahead=${position[0]}
 		behind=${position[1]}
 	fi
 
-	if [ $LOCAL = $REMOTE ]; then
+	if [ "$LOCAL" = "$REMOTE" ]; then
 	    display "position" "up-to-date with remote"
-	elif [ $LOCAL = $BASE ]; then
+	elif [ "$LOCAL" = "$BASE" ]; then
 	    display_active "position" "$(notice "$behind commits behind remote (pull)")"
 		pull=1
-	elif [ $REMOTE = $BASE ]; then
+	elif [ "$REMOTE" = "$BASE" ]; then
 		display_active "position" "$(notice "$ahead commits ahead of remote (push)")"
 		push=1
 	else
