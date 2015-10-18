@@ -2,7 +2,7 @@ install() {
 	printf "\e[33m[~] Downloading script...\e[0m\n"
 
 	curl -L#o /var/tmp/gg https://raw.githubusercontent.com/qw3rtman/gg/master/bin/gg
-	curl -L#o /var/tmp/gg.1 https://raw.githubusercontent.com/qw3rtman/gg/master/gg.1
+	curl -L#o /var/tmp/gg.1 https://raw.githubusercontent.com/qw3rtman/gg/master/man/gg.1
 
 	printf "\n\e[33m[~] Setting permissions...\e[0m\n"
 
