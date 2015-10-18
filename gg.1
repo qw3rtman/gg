@@ -1,0 +1,93 @@
+.TH gg "1" "October 2015" "Git Goodies version 2.0.0" "User Commands"
+.SH NAME
+gg \- manual page for Git Goodies version 2.0.0
+.SH SYNOPSIS
+gg \fB[OPTION]\fR \fI<args>\fR
+.SH DESCRIPTION
+
+gg helps you work with git more efficiently, saving you keystrokes for your most prized projects.
+
+Think of gg as a wrapper for the git commands that you run all the time; a wrapper that adds functionality and is aesthetically pleasing.
+See <https://github.com/qw3rtman/gg> for more details.
+.IP
+.SH OPTIONS
+.TP
+\fBi\fR
+Initialize new Git repository
+.TP
+\fBig\fR
+List available .gitignore templates
+.TP
+\fBig\fR \fI<template>\fR
+Add .gitignore file from <template>
+.TP
+\fBigf\fR \fI<file ...>\fR
+Add all <file>(s) to .gitignore
+.TP
+\fBcl\fR \fI<url>\fR
+Clone repository from <url>
+.TP
+\fBa\fR
+Add all files
+.TP
+\fBa\fR \fI<file ...>\fR
+Add all <file>(s)
+.TP
+\fBc\fR \fI<message>\fR
+Add all files and commit with <message>
+.TP
+\fBcn\fR \fI<message>\fR
+Commit with <message>
+.TP
+\fBuc\fR \fI<count>\fR
+Go back (uncommit) <count> commits
+.TP
+\fBrc\fR \fI<message>\fR
+Add all files and recommit (amend) with <message>
+.TP
+\fBrcn\fR \fI<message>\fR
+Recommit (amend) with <message>
+.TP
+\fBp\fR
+Push all commits to remote
+.TP
+\fBpl\fR
+Pull all commits from remote
+.TP
+\fBf\fR
+Fetch all commits from remote
+.TP
+\fBs\fR
+Display repository status
+.TP
+\fBl\fR
+Display repository commit log
+.TP
+\fBb\fR
+List all branches in repository
+.TP
+\fBb\fR \fI<branch>\fR
+Create and checkout <branch>
+.TP
+\fBch\fR
+List all branches in repository
+.TP
+\fBch\fR \fI<branch>\fR
+Checkout <branch>
+.TP
+\fBin\fR \fI<hash>\fR
+Display info about <hash>
+.TP
+\fB\-V\fR, \fB\-\-version\fR
+Output current version of Git Goodies
+.TP
+\fB\-h\fR, \fB\-\-help\fR
+Display this help information
+.PP
+
+.SH AUTHOR
+Git Goodies created by Nimit "qw3rtman" Kalra <nimit@nimitkalra.com> (c) 2015
+.TP
+Man page written by Johnathan "ShaggyTwoDope" Jenkins <twodopeshaggy@gmail.com> (2015).
+.SH BUGS
+Report bugs to \fIhttps://github.com/qw3rtman/gg/issues\fR
