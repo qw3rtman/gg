@@ -1,7 +1,7 @@
 Git Goodies
 ===========
 
-<p align="center"><img src="http://nimitkalra.com/images/gg/gg.gif"/></p>
+<p align="center"><img src="http://nimit.io/images/gg/gg.gif"/></p>
 
 `gg` helps you *work with `git` more efficiently*, saving you keystrokes for your most prized projects.
 
@@ -14,7 +14,7 @@ For example, the `gg s` command presents you with an easy to look at a quick gla
 
 Here's a screenshot of the `gg s` command in action:
 
-![`gg s`](http://nimitkalra.com/images/gg/s.png)
+![`gg s`](http://nimit.io/images/gg/s.png)
 
 You can see the current local branch and its respective remote branch, the latest commit hash and message, the local repository's position in relation with the respective remote repository (alerting you that you should push two commits to reach up-to-date status with the remote repository), the status of staging and commits, and the commits that waiting to be pushed.
 
@@ -91,14 +91,14 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Initializing repositories
 
-![`gg i`](http://nimitkalra.com/images/gg/init.png)
+![`gg i`](http://nimit.io/images/gg/init.png)
 
 * `gg i`
 * `gg init`
 
 ### Adding a template to .gitignore
 
-![`gg ig`](http://nimitkalra.com/images/gg/ignore_template.png)
+![`gg ig`](http://nimit.io/images/gg/ignore_template.png)
 
 * `gg ig <template>`
 * `gg ignore <template>`
@@ -107,14 +107,14 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Adding a file to .gitignore
 
-![`gg igf`](http://nimitkalra.com/images/gg/ignore_file.png)
+![`gg igf`](http://nimit.io/images/gg/ignore_file.png)
 
 * `gg igf <file ...>`
 * `gg ignorefile <file ...>`
 
 ### Cloning a repository
 
-![`gg cl`](http://nimitkalra.com/images/gg/clone.png)
+![`gg cl`](http://nimit.io/images/gg/clone.png)
 
 * `gg cl <url>`
 * `gg clone <url>`
@@ -129,21 +129,21 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Adding all files
 
-![`gg a`](http://nimitkalra.com/images/gg/add.png)
+![`gg a`](http://nimit.io/images/gg/add.png)
 
 * `gg a`
 * `gg add`
 
 ### Adding specific files
 
-![`gg a`](http://nimitkalra.com/images/gg/add_file.png)
+![`gg a`](http://nimit.io/images/gg/add_file.png)
 
 * `gg a <file ...>`
 * `gg add <file ...>`
 
 ### Adding all and committing
 
-![`gg c`](http://nimitkalra.com/images/gg/commit.png)
+![`gg c`](http://nimit.io/images/gg/commit.png)
 
 * `gg c <message>`
 * `gg commmit <message>`
@@ -152,7 +152,7 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Committing
 
-![`gg cn`](http://nimitkalra.com/images/gg/commit_no_add.png)
+![`gg cn`](http://nimit.io/images/gg/commit_no_add.png)
 
 * `gg cn <message>`
 
@@ -160,7 +160,7 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Uncommiting (resetting: `git reset HEAD~count`)
 
-![`gg back`](http://nimitkalra.com/images/gg/uncommit.png)
+![`gg back`](http://nimit.io/images/gg/uncommit.png)
 
 * `gg uc <count>`
 * `gg uncommit <count>`
@@ -170,7 +170,7 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Adding all and recommitting (amending: `git commit --amend`)
 
-![`gg am`](http://nimitkalra.com/images/gg/amend.png)
+![`gg am`](http://nimit.io/images/gg/amend.png)
 
 * `gg rc <message>`
 * `gg recommit <message>`
@@ -181,7 +181,7 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Recommitting (amending: `git commit --amend`)
 
-![`gg am`](http://nimitkalra.com/images/gg/amend_no_add.png)
+![`gg am`](http://nimit.io/images/gg/amend_no_add.png)
 
 * `gg rcn <message>`
 * `gg amn <message>`
@@ -190,61 +190,61 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Pushing
 
-![`gg p`](http://nimitkalra.com/images/gg/push.png)
+![`gg p`](http://nimit.io/images/gg/push.png)
 
 * `gg p`
 * `gg push`
 
 ### Pulling
 
-![`gg pl`](http://nimitkalra.com/images/gg/pull.png)
+![`gg pl`](http://nimit.io/images/gg/pull.png)
 
 * `gg pl`
 * `gg pull`
 
 ### Fetching
 
-![`gg f`](http://nimitkalra.com/images/gg/fetch.png)
+![`gg f`](http://nimit.io/images/gg/fetch.png)
 
 * `gg f`
 * `gg fetch`
 
 ### Getting repository status
 
-![`gg s`](http://nimitkalra.com/images/gg/status.png)
+![`gg s`](http://nimit.io/images/gg/status.png)
 
 * `gg s`
 * `gg status`
 
 ### Displaying commit log
 
-![`gg l`](http://nimitkalra.com/images/gg/log.png)
+![`gg l`](http://nimit.io/images/gg/log.png)
 
 * `gg l`
 * `gg log`
 
 ### Listing all branches
 
-![`gg b`](http://nimitkalra.com/images/gg/branch.png)
+![`gg b`](http://nimit.io/images/gg/branch.png)
 
 * `gg b`
 * `gg ch`
 
 ### Checking out existing branch
 
-![`gg ch`](http://nimitkalra.com/images/gg/checkout.png)
+![`gg ch`](http://nimit.io/images/gg/checkout.png)
 
 * `gg ch <branch>`
 
 ### Creating and checking out new branch
 
-![`gg b`](http://nimitkalra.com/images/gg/branch_checkout.png)
+![`gg b`](http://nimit.io/images/gg/branch_checkout.png)
 
 * `gg b <branch>`
 
 ### Displaying commit info
 
-![`gg in`](http://nimitkalra.com/images/gg/info.png)
+![`gg in`](http://nimit.io/images/gg/info.png)
 
 * `gg in <hash>`
 * `gg info <hash>`
@@ -254,14 +254,14 @@ powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.github
 
 ### Displaying **Git Goodies** version
 
-![`gg -V`](http://nimitkalra.com/images/gg/version.png)
+![`gg -V`](http://nimit.io/images/gg/version.png)
 
 * `gg -V`
 * `gg --version`
 
 ### Displaying **Git Goodies** help
 
-![`gg -h`](http://nimitkalra.com/images/gg/help.png)
+![`gg -h`](http://nimit.io/images/gg/help.png)
 
 * `gg`
 * `gg -h`
