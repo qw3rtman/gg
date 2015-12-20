@@ -39,17 +39,16 @@ If you don't feel comfortable executing a random script, [its source is availabl
 
 **Windows:**  
 
-Note: This assumes that you already have the git installed on your system and
+Note: This assumes that you already have the `git` installed on your system and
 it is configured to be used on the command line.
 
-* Open the cmd and navigate to a folder included in your PATH.
+* Open a Command Prompt window and navigate to a folder included in your PATH.
 * Run the following commands
 ```
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/qw3rtman/gg/master/bin/gg', 'gg')"
 powershell -Command "(New-Object Net.WebClient).DownloadFile('https://raw.githubusercontent.com/qw3rtman/gg/master/bin/gg.cmd', 'gg.cmd')"
 ```
-* Open a new cmd instance and enjoy.
-
+* Open a new Command Prompt window and enjoy.
 
 ## Usage
 
