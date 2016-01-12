@@ -772,7 +772,7 @@ info() {
 display_help() {
 	cat <<-EOF
 
-  » $(special_bold "$0") $(success "command") $(whoops "arguments") $(notice "--option")
+  » $(special_bold "gg") $(success "command") $(whoops "arguments") $(notice "--option")
 
   ┌ $(success "help")                  $(comment "# display this help information")
   ├ $(success "i")                     $(comment "# initialize new Git repository")
