@@ -19,7 +19,7 @@ install() {
 
 	version=($(gg -V))
 
-	printf "\e[32m[✔] Successfully installed Git Goodies v${version}\e[32m!\n"
+	printf "\e[32m[✔] Successfully installed Git Goodies v${version}\e[32m!\e[0m\n"
 }
 
 install
