@@ -526,39 +526,50 @@ fetch() {
 }
 
 status() {
-	printf "\e[2m\e[90m[\e[22m\e[0m$(success "$(current_branch)") \e[90m->\e[39m $(success "$(current_remote)/$(current_branch)")\e[2m\e[90m|\e[22m\e[0m$(notice $(latest_commit_hash))\e[2m\e[90m]\e[22m\e[0m \e[90m%s\e[39m\n" "$(latest_commit_message)"
+	if [ -z "$(git remote)" ]; then
+		echo "No remote repo."
+		echo
 
-	echo
-
-	# http://stackoverflow.com/a/3278427
-	git fetch --quiet
-
-	LOCAL=$(git rev-parse @{0})
-	REMOTE=$(git rev-parse @{u})
-	BASE=$(git merge-base @{0} @{u})
-
-	push=0
-	pull=0
-
-	if [ "$LOCAL" != "$REMOTE" ]; then
-		position=($(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch)))
-
-		ahead=${position[0]}
-		behind=${position[1]}
+		has_remote=0
+	else
+		has_remote=1
 	fi
 
-	if [ "$LOCAL" = "$REMOTE" ]; then
-	    display "position" "up-to-date with remote"
-	elif [ "$LOCAL" = "$BASE" ]; then
-	    display_active "position" "$(notice "$behind commits behind remote (pull)")"
-		pull=1
-	elif [ "$REMOTE" = "$BASE" ]; then
-		display_active "position" "$(notice "$ahead commits ahead of remote (push)")"
-		push=1
-	else
-	    display_active "position" "$(whoops "diverged from remote") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
-		pull=1
-		push=1
+	if [ $has_remote -eq 1 ];then
+		printf "\e[2m\e[90m[\e[22m\e[0m$(success "$(current_branch)") \e[90m->\e[39m $(success "$(current_remote)/$(current_branch)")\e[2m\e[90m|\e[22m\e[0m$(notice $(latest_commit_hash))\e[2m\e[90m]\e[22m\e[0m \e[90m%s\e[39m\n" "$(latest_commit_message)"
+
+		echo
+
+		# http://stackoverflow.com/a/3278427
+		git fetch --quiet
+
+		LOCAL=$(git rev-parse @{0})
+		REMOTE=$(git rev-parse @{u})
+		BASE=$(git merge-base @{0} @{u})
+
+		push=0
+		pull=0
+
+		if [ "$LOCAL" != "$REMOTE" ]; then
+			position=($(git rev-list --left-right --count $(current_branch)...$(current_remote)/$(current_branch)))
+
+			ahead=${position[0]}
+			behind=${position[1]}
+		fi
+
+		if [ "$LOCAL" = "$REMOTE" ]; then
+		    display "position" "up-to-date with remote"
+		elif [ "$LOCAL" = "$BASE" ]; then
+		    display_active "position" "$(notice "$behind commits behind remote (pull)")"
+			pull=1
+		elif [ "$REMOTE" = "$BASE" ]; then
+			display_active "position" "$(notice "$ahead commits ahead of remote (push)")"
+			push=1
+		else
+		    display_active "position" "$(whoops "diverged from remote") $(whoops_subtext "($ahead commits ahead, $behind commits behind)")"
+			pull=1
+			push=1
+		fi
 	fi
 
 	git diff --exit-code --quiet
@@ -576,24 +587,26 @@ status() {
 		display_active "commits " "$(notice "not all changes committed (commit changes)")"
 	fi
 
-	if [ $push -eq 1 ] | [ $pull -eq 1 ]; then
-		echo
-	fi
+	if [ $has_remote -eq 1 ]; then
+		if [ $push -eq 1 ] | [ $pull -eq 1 ]; then
+			echo
+		fi
 
-	if [ $push -eq 1 ]; then
-		echo
+		if [ $push -eq 1 ]; then
+			echo
 
-		printf "\e[2mcommits ahead (to push):\e[22m\n"
+			printf "\e[2mcommits ahead (to push):\e[22m\n"
 
-		all_commits_to_push_pretty
-	fi
+			all_commits_to_push_pretty
+		fi
 
-	if [ $pull -eq 1 ]; then
-		echo
+		if [ $pull -eq 1 ]; then
+			echo
 
-		printf "\e[2mcommits behind (to pull):\e[22m\n"
+			printf "\e[2mcommits behind (to pull):\e[22m\n"
 
-		all_commits_to_pull_pretty
+			all_commits_to_pull_pretty
+		fi
 	fi
 
 	# Source: http://stackoverflow.com/questions/5096268/git-reports-get-changed-files
