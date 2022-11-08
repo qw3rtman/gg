@@ -166,7 +166,7 @@ init() {
 }
 
 ignore_list() {
-	list=$(curl --silent "https://www.gitignore.io/api/list")
+	list=$(curl --silent -L "https://www.gitignore.io/api/list")
 	list=(${list//,/ })
 
 	for ignore in "${list[@]}"; do
