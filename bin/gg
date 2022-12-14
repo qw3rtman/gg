@@ -181,7 +181,7 @@ ignore() {
 		ignore_list
 	else
 		for template in $@; do
-			ignore=$(curl --silent "https://www.gitignore.io/api/$template")
+			ignore=$(curl --silent -L "https://www.gitignore.io/api/$template")
 			ignore_array=($ignore)
 
 			if [ ${ignore_array[5]} == "ERROR:" ]; then
